@@ -30,7 +30,7 @@ public class BlockEntityPipe extends BlockEntity implements BlockEntityClientSer
     @Override
     public CompoundTag toTag(CompoundTag tag) {
         for (Direction dir : Direction.values()) {
-            tag.putString(dir.toString(), faces.get(Direction.UP).toString());
+            tag.putString(dir.toString(), faces.get(dir).toString());
         }
         return super.toTag(tag);
     }
