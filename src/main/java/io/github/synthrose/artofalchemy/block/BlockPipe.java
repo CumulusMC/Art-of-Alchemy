@@ -5,6 +5,7 @@ import io.github.synthrose.artofalchemy.blockentity.BlockEntityPipe;
 import io.github.synthrose.artofalchemy.blockentity.BlockEntityPipe.IOFace;
 import io.github.synthrose.artofalchemy.item.AoAItems;
 import io.github.synthrose.artofalchemy.item.ItemEssentiaPort;
+import io.github.synthrose.artofalchemy.network.AoANetworking;
 import io.github.synthrose.artofalchemy.transport.EssentiaNetwork;
 import io.github.synthrose.artofalchemy.transport.EssentiaNetworker;
 import io.github.synthrose.artofalchemy.transport.NetworkElement;
@@ -12,6 +13,8 @@ import io.github.synthrose.artofalchemy.transport.NetworkNode;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
@@ -86,6 +89,38 @@ public class BlockPipe extends Block implements NetworkElement, BlockEntityProvi
 		}
 	}
 
+	public static void scheduleChunkRebuild(World world, BlockPos pos) {
+		if (world.isClient()) {
+			MinecraftClient.getInstance().worldRenderer.updateBlock(world, pos, null, null, 0);
+		}
+	}
+
+	// If a pipe exists at pos, and it was previously connected in Direction dir,
+	// undo the connection
+	private void closeFace(World world, BlockPos pos, Direction dir) {
+		BlockEntity be = world.getBlockEntity(pos);
+		if (be instanceof BlockEntityPipe) {
+			BlockEntityPipe pipe = (BlockEntityPipe) be;
+			IOFace previous = pipe.getFace(dir);
+			if (previous == IOFace.CONNECT) {
+				pipe.setFace(dir, IOFace.NONE);
+			}
+		}
+	}
+
+	// If a pipe exists at pos, and it is capable of connecting in Direction dir,
+	// set it as connected
+	private void connectFace(World world, BlockPos pos, Direction dir) {
+		BlockEntity be = world.getBlockEntity(pos);
+		if (be instanceof BlockEntityPipe) {
+			BlockEntityPipe pipe = (BlockEntityPipe) be;
+			IOFace previous = pipe.getFace(dir);
+			if (previous == IOFace.NONE) {
+				pipe.setFace(dir, IOFace.CONNECT);
+			}
+		}
+	}
+
 	public boolean hasNodes(World world, BlockPos pos) {
 		return !getNodes(world, pos).isEmpty();
 	}
@@ -143,12 +178,15 @@ public class BlockPipe extends Block implements NetworkElement, BlockEntityProvi
 	public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
 		super.neighborUpdate(state, world, pos, block, fromPos, notify);
 		for (Direction dir : Direction.values()) {
-			if (fromPos.subtract(pos) == dir.getVector()) {
+			if (fromPos.subtract(pos).equals(dir.getVector())) {
 				if (faceOpen(world, pos, dir) && faceOpen(world, fromPos, dir.getOpposite())) {
 					setFace(world, pos, dir, IOFace.CONNECT);
+					AoANetworking.sendPipeFaceUpdate(world, pos, dir, IOFace.CONNECT);
 				} else if (getFace(world, pos, dir) == IOFace.CONNECT) {
 					setFace(world, pos, dir, IOFace.NONE);
+					AoANetworking.sendPipeFaceUpdate(world, pos, dir, IOFace.NONE);
 				}
+				scheduleChunkRebuild(world, pos);
 			}
 		}
 	}
@@ -157,7 +195,7 @@ public class BlockPipe extends Block implements NetworkElement, BlockEntityProvi
 	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
 		super.onPlaced(world, pos, state, placer, itemStack);
 		for (Direction dir : Direction.values()) {
-			if (faceOpen(world, pos.offset(dir), dir)) {
+			if (faceOpen(world, pos.offset(dir), dir.getOpposite())) {
 				setFace(world, pos, dir, IOFace.CONNECT);
 			}
 		}
@@ -222,6 +260,8 @@ public class BlockPipe extends Block implements NetworkElement, BlockEntityProvi
 				} else {
 					setFace(world, pos, dir, IOFace.BLOCK);
 				}
+				closeFace(world, pos.offset(dir), dir.getOpposite());
+				scheduleChunkRebuild(world, pos);
 				break;
 			case BLOCK:
 			case INSERTER:
@@ -237,6 +277,8 @@ public class BlockPipe extends Block implements NetworkElement, BlockEntityProvi
 				} else {
 					setFace(world, pos, dir, IOFace.NONE);
 				}
+				connectFace(world, pos.offset(dir), dir.getOpposite());
+				scheduleChunkRebuild(world, pos);
 				break;
 		}
 		if (!world.isClient()) {
