@@ -1,5 +1,7 @@
 package io.github.synthrose.artofalchemy.network;
 
+import io.github.synthrose.artofalchemy.block.BlockPipe;
+import io.github.synthrose.artofalchemy.blockentity.BlockEntityPipe;
 import io.github.synthrose.artofalchemy.essentia.EssentiaContainer;
 import io.github.synthrose.artofalchemy.essentia.EssentiaStack;
 import io.github.synthrose.artofalchemy.gui.screen.EssentiaScreen;
@@ -8,6 +10,7 @@ import io.netty.buffer.Unpooled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.network.ClientSidePacketRegistry;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.item.ItemStack;
@@ -16,6 +19,8 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
 public class AoAClientNetworking {
@@ -59,6 +64,21 @@ public class AoAClientNetworking {
 						Screen screen = MinecraftClient.getInstance().currentScreen;
 						if (screen instanceof ScreenJournal) {
 							((ScreenJournal) screen).refresh(journal);
+						}
+					});
+				});
+
+		ClientSidePacketRegistry.INSTANCE.register(AoANetworking.PIPE_FACE_UPDATE,
+				(ctx, data) -> {
+					Direction dir = data.readEnumConstant(Direction.class);
+					BlockEntityPipe.IOFace face = data.readEnumConstant(BlockEntityPipe.IOFace.class);
+					BlockPos pos = data.readBlockPos();
+					ctx.getTaskQueue().execute(() -> {
+						World world = MinecraftClient.getInstance().world;
+						BlockEntity be = world.getBlockEntity(pos);
+						if (be instanceof BlockEntityPipe) {
+							((BlockEntityPipe) be).setFace(dir, face);
+							BlockPipe.scheduleChunkRebuild(world, pos);
 						}
 					});
 				});
