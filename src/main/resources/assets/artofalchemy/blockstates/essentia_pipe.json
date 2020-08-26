@@ -1,7 +1,7 @@
 {
     "variants": {
         "": {
-            "model":"artofalchemy:block/essentia_pipe_core"
+            "model":"artofalchemy:block/essentia_pipe_core_dynamic"
         }
     }
 }
