@@ -16,9 +16,9 @@ public class AoAHandlers {
 	public static ScreenHandlerType<HandlerCalcinator>  CALCINATOR;
 	public static ScreenHandlerType<HandlerDissolver>   DISSOLVER;
 	public static ScreenHandlerType<HandlerSynthesizer> SYNTHESIZER;
-	public static ScreenHandlerType<HandlerAnalyzer>    ANALYZER;
+	public static ScreenHandlerType<HandlerAnalyzer>	ANALYZER;
 	public static ScreenHandlerType<HandlerProjector>   PROJECTOR;
-	public static ScreenHandlerType<HandlerJournal>     JOURNAL;
+	public static ScreenHandlerType<HandlerJournal>	 JOURNAL;
 
 	public static void registerHandlers() {
 		CALCINATOR = ScreenHandlerRegistry.registerExtended(BlockCalcinator.getId(), defaultFactory(HandlerCalcinator.class));

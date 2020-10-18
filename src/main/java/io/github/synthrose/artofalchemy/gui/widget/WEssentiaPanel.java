@@ -9,10 +9,10 @@ import java.util.*;
 import java.util.Map.Entry;
 
 public class WEssentiaPanel extends WListPanel<Essentia, WEssentiaSubPanel> {
-	
+
 	protected EssentiaContainer container;
 	protected EssentiaStack required = new EssentiaStack();
-		
+
 	public WEssentiaPanel(EssentiaContainer container) {
 		super(new ArrayList<>(), null, null);
 		this.container = container;
@@ -20,7 +20,7 @@ public class WEssentiaPanel extends WListPanel<Essentia, WEssentiaSubPanel> {
 		this.configurator = null;
 		updateEssentia(container);
 	}
-	
+
 	public WEssentiaPanel(EssentiaContainer container, EssentiaStack required) {
 		super(new ArrayList<>(), null, null);
 		this.container = container;
@@ -33,7 +33,7 @@ public class WEssentiaPanel extends WListPanel<Essentia, WEssentiaSubPanel> {
 	public WEssentiaPanel() {
 		this(new EssentiaContainer());
 	}
-	
+
 	public void updateEssentia(EssentiaContainer container) {
 		this.container = container;
 		this.configurator = (Essentia essentia, WEssentiaSubPanel panel) -> panel.setEssentia(essentia, container.getCount(essentia));
@@ -41,7 +41,7 @@ public class WEssentiaPanel extends WListPanel<Essentia, WEssentiaSubPanel> {
 		reconfigure();
 		this.layout();
 	}
-	
+
 	public void updateEssentia(EssentiaContainer container, EssentiaStack required) {
 		this.container = container;
 		this.required = required;
@@ -51,12 +51,12 @@ public class WEssentiaPanel extends WListPanel<Essentia, WEssentiaSubPanel> {
 		reconfigure();
 		this.layout();
 	}
-	
+
 	protected void rebuildList() {
 		Set<Essentia> essentiaSet = new HashSet<>();
 		essentiaSet.addAll(container.getContents().keySet());
 		essentiaSet.addAll(required.keySet());
-		
+
 		Map<Essentia, Integer> sortOrder = new HashMap<>();
 		for (Essentia key : essentiaSet) {
 			int value;
@@ -69,16 +69,16 @@ public class WEssentiaPanel extends WListPanel<Essentia, WEssentiaSubPanel> {
 				sortOrder.put(key, value);
 			}
 		}
-		
+
 		data.clear();
 		data.addAll(sortOrder.keySet());
 		data.sort((key1, key2) -> sortOrder.get(key2) - sortOrder.get(key1));
-		
+
 		if (data.isEmpty()) {
 			data.add(null);
 		}
 	}
-	
+
 	protected void reconfigure() {
 		for (Entry<Essentia, WEssentiaSubPanel> entry : configured.entrySet()) {
 			configurator.accept(entry.getKey(), entry.getValue());

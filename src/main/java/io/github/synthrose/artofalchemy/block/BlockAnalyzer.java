@@ -27,54 +27,54 @@ import net.minecraft.world.World;
 
 public class BlockAnalyzer extends Block implements ExtendedScreenHandlerFactory {
 
-    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
-    public static final Settings SETTINGS = Settings
-        .of(Material.STONE)
-        .strength(5.0f, 6.0f)
-        .nonOpaque();
+	public static final Settings SETTINGS = Settings
+		.of(Material.STONE)
+		.strength(5.0f, 6.0f)
+		.nonOpaque();
 
-    public BlockAnalyzer() {
-        super(SETTINGS);
-    }
+	public BlockAnalyzer() {
+		super(SETTINGS);
+	}
 
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-    }
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(FACING);
+	}
 
-    public static Identifier getId() {
-        return Registry.BLOCK.getId(AoABlocks.ANALYZER);
-    }
+	public static Identifier getId() {
+		return Registry.BLOCK.getId(AoABlocks.ANALYZER);
+	}
 
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return super.getPlacementState(ctx).with(FACING, ctx.getPlayerFacing());
-    }
+	@Override
+	public BlockState getPlacementState(ItemPlacementContext ctx) {
+		return super.getPlacementState(ctx).with(FACING, ctx.getPlayerFacing());
+	}
 
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
-                              BlockHitResult hit) {
-        if (world.isClient) {
-            return ActionResult.SUCCESS;
-        }
+	@Override
+	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
+							  BlockHitResult hit) {
+		if (world.isClient) {
+			return ActionResult.SUCCESS;
+		}
 
-        player.openHandledScreen(this);
+		player.openHandledScreen(this);
 
-        return ActionResult.SUCCESS;
-    }
+		return ActionResult.SUCCESS;
+	}
 
-    @Override
-    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
-    }
+	@Override
+	public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+	}
 
-    @Override
-    public Text getDisplayName() {
-        return new LiteralText("");
-    }
+	@Override
+	public Text getDisplayName() {
+		return new LiteralText("");
+	}
 
-    @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new HandlerAnalyzer(syncId, inv, ScreenHandlerContext.EMPTY);
-    }
+	@Override
+	public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+		return new HandlerAnalyzer(syncId, inv, ScreenHandlerContext.EMPTY);
+	}
 }

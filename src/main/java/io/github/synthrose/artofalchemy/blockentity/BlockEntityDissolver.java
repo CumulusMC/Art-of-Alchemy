@@ -38,7 +38,7 @@ import net.minecraft.util.math.Direction;
 
 public class BlockEntityDissolver extends BlockEntity implements ImplementedInventory,  Tickable, PropertyDelegateHolder,
 		BlockEntityClientSerializable, HasEssentia, HasAlkahest, SidedInventory, ExtendedScreenHandlerFactory {
-	
+
 	private static final int[] TOP_SLOTS = new int[]{0};
 	private static final int[] BOTTOM_SLOTS = new int[]{0};
 	private static final int[] SIDE_SLOTS = new int[]{0};
@@ -55,16 +55,16 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 	// Status 2: Insufficient alkahest
 	// Status 3: Full output buffer
 	private boolean lit = false;
-	
+
 	protected final DefaultedList<ItemStack> items = DefaultedList.ofSize(1, ItemStack.EMPTY);
 	protected EssentiaContainer essentia;
 	protected final PropertyDelegate delegate = new PropertyDelegate() {
-		
+
 		@Override
 		public int size() {
 			return 5;
 		}
-		
+
 		@Override
 		public void set(int index, int value) {
 			switch(index) {
@@ -85,7 +85,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 				break;
 			}
 		}
-		
+
 		@Override
 		public int get(int index) {
 			switch(index) {
@@ -103,9 +103,9 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 				return 0;
 			}
 		}
-		
+
 	};
-	
+
 	public BlockEntityDissolver() {
 		this(AoABlockEntities.DISSOLVER);
 		AoAConfig.DissolverSettings settings = AoAConfig.get().dissolverSettings;
@@ -142,7 +142,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 	public EssentiaContainer getContainer(Direction dir) {
 		return getContainer(0);
 	}
-	
+
 	@Override
 	public EssentiaContainer getContainer(int id) {
 		if (id == 0) {
@@ -151,7 +151,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 			return null;
 		}
 	}
-	
+
 	@Override
 	public int getNumContainers() {
 		return 1;
@@ -161,7 +161,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 	public int getAlkahest() {
 		return alkahest;
 	}
-	
+
 	@Override
 	public boolean setAlkahest(int amount) {
 		if (amount >= 0 && amount <= maxAlkahest) {
@@ -173,7 +173,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 			return false;
 		}
 	}
-	
+
 	private boolean updateStatus(int status) {
 		if (this.status != status) {
 			this.status = status;
@@ -181,31 +181,31 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 		}
 		return (status == 0);
 	}
-	
+
 	private boolean canCraft(RecipeDissolution recipe) {
 		ItemStack inSlot = items.get(0);
-		
+
 		if (recipe == null || inSlot.isEmpty()) {
 			return updateStatus(1);
 		} else {
 			ItemStack container = recipe.getContainer();
 			EssentiaStack results = recipe.getEssentia();
-			
+
 			maxProgress = (int) Math.sqrt(results.getCount() / getSpeedMod());
 			if (maxProgress < 2/getSpeedMod()) {
 				maxProgress = (int) (2/getSpeedMod());
 			}
-			
+
 			if (container != ItemStack.EMPTY && inSlot.getCount() != container.getCount()) {
 				 return updateStatus(1);
 			}
-			
+
 			float factor = getEfficiency() * recipe.getFactor();
 			if (inSlot.isDamageable()) {
 				factor *= 1.0 - (float) inSlot.getDamage() / inSlot.getMaxDamage();
 			}
 			results.multiply(factor);
-			
+
 			if (results.getCount() > alkahest) {
 				return updateStatus(2);
 			} else {
@@ -217,30 +217,30 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 			}
 		}
 	}
-	
+
 	// Be sure to check canCraft() first!
 	private void doCraft(RecipeDissolution recipe) {
 		ItemStack inSlot = items.get(0);
 		EssentiaStack results = recipe.getEssentia();
 		ItemStack container = recipe.getContainer();
-		
+
 		float factor = getEfficiency() * recipe.getFactor();
 		if (inSlot.isDamageable()) {
 			factor *= 1.0 - (float) inSlot.getDamage() / inSlot.getMaxDamage();
 		}
 		results.multiply(factor);
-		
+
 		if (container != ItemStack.EMPTY) {
 			items.set(0, container.copy());
 		} else {
 			inSlot.decrement(1);
 		}
-		
+
 		essentia.addEssentia(results);
 		alkahest -= results.getCount();
-		
+
 	}
-	
+
 	@Override
 	public CompoundTag toTag(CompoundTag tag) {
 		tag.putInt("alkahest", alkahest);
@@ -251,7 +251,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 		Inventories.toTag(tag, items);
 		return super.toTag(tag);
 	}
-	
+
 	@Override
 	public void fromTag(BlockState state, CompoundTag tag) {
 		super.fromTag(state, tag);
@@ -268,7 +268,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 	public DefaultedList<ItemStack> getItems() {
 		return items;
 	}
-	
+
 	@Override
 	public boolean isValid(int slot, ItemStack stack) {
 		return true;
@@ -278,11 +278,11 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 	@Override
 	public void tick() {
 		boolean dirty = false;
-		
+
 		if (!world.isClient()) {
 			ItemStack inSlot = items.get(0);
 			boolean canWork = false;
-			
+
 			if (inSlot.isEmpty()) {
 				updateStatus(1);
 			} else if (!hasAlkahest()) {
@@ -291,7 +291,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 				RecipeDissolution recipe = world.getRecipeManager()
 						.getFirstMatch(AoARecipes.DISSOLUTION, this, world).orElse(null);
 				canWork = canCraft(recipe);
-			
+
 				if (canWork) {
 					if (progress < maxProgress) {
 						if (!lit) {
@@ -310,7 +310,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 					}
 				}
 			}
-			
+
 			if (!canWork) {
 				if (progress != 0) {
 					progress = 0;
@@ -321,7 +321,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 				}
 			}
 		}
-		
+
 		if (dirty) {
 			markDirty();
 		}
@@ -339,7 +339,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 			sync();
 		}
 	}
-	
+
 	@Override
 	public void sync() {
 		AoANetworking.sendEssentiaPacket(world, pos, 0, essentia);
@@ -355,7 +355,7 @@ public class BlockEntityDissolver extends BlockEntity implements ImplementedInve
 	public CompoundTag toClientTag(CompoundTag tag) {
 		return toTag(tag);
 	}
-	
+
 	@Override
 	public int[] getAvailableSlots(Direction side) {
 		if (side == Direction.UP) {

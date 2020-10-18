@@ -15,8 +15,8 @@ import java.util.function.Supplier;
 @Environment(EnvType.CLIENT)
 public class AoAxModMenu implements ModMenuApi {
 
-    @Override
-    public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return (screen) -> AutoConfig.getConfigScreen(AoAConfig.class, screen).get();
-    }
+	@Override
+	public ConfigScreenFactory<?> getModConfigScreenFactory() {
+		return (screen) -> AutoConfig.getConfigScreen(AoAConfig.class, screen).get();
+	}
 }

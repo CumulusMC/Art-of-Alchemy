@@ -15,14 +15,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class RecipeDissolution implements Recipe<Inventory> {
-	
+
 	protected final Identifier id;
 	protected final String group;
 	protected final Ingredient input;
 	protected final EssentiaStack essentia;
 	protected final float factor;
 	protected final ItemStack container;
-	
+
 	public RecipeDissolution(Identifier id, String group, Ingredient input, EssentiaStack essentia, float factor, ItemStack container) {
 		this.id = id;
 		this.group = group;
@@ -45,15 +45,15 @@ public class RecipeDissolution implements Recipe<Inventory> {
 	public ItemStack craft(Inventory inv) {
 		return ItemStack.EMPTY;
 	}
-	
+
 	public Ingredient getInput() {
 		return input;
 	}
-	
+
 	public EssentiaStack getEssentia() {
 		return (EssentiaStack) essentia.clone();
 	}
-	
+
 	@Override
 	public ItemStack getOutput() {
 		return ItemStack.EMPTY;
@@ -67,33 +67,33 @@ public class RecipeDissolution implements Recipe<Inventory> {
 	public float getFactor() {
 		return factor;
 	}
-	
+
 	public ItemStack getContainer() {
 		return container;
 	}
-	
+
 	@Override
 	public RecipeType<?> getType() {
 		return AoARecipes.DISSOLUTION;
 	}
-	
+
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return AoARecipes.DISSOLUTION_SERIALIZER;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public boolean fits(int width, int height) {
 		return true;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public String getGroup() {
 		return group;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public ItemStack getRecipeKindIcon() {

@@ -21,10 +21,10 @@ public class ScreenSynthesizer extends CottonInventoryScreen<HandlerSynthesizer>
 	public void updateEssentia(int essentiaId, EssentiaContainer essentia, BlockPos pos) {
 		handler.updateEssentia(essentiaId, essentia, pos);
 	}
-	
+
 	@Override
 	public void updateEssentia(int essentiaId, EssentiaContainer essentia, EssentiaStack required, BlockPos pos) {
 		handler.updateEssentia(essentiaId, essentia, required, pos);
 	}
-	
+
 }

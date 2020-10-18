@@ -13,14 +13,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class RecipeCalcination implements Recipe<Inventory> {
-	
+
 	protected final Identifier id;
 	protected final String group;
 	protected final Ingredient input;
 	protected final ItemStack output;
 	protected final float factor;
 	protected final ItemStack container;
-	
+
 	public RecipeCalcination(Identifier id, String group, Ingredient input, ItemStack output, float factor, ItemStack container) {
 		this.id = id;
 		this.group = group;
@@ -43,11 +43,11 @@ public class RecipeCalcination implements Recipe<Inventory> {
 	public ItemStack craft(Inventory inv) {
 		return output.copy();
 	}
-	
+
 	public Ingredient getInput() {
 		return input;
 	}
-	
+
 	@Override
 	public ItemStack getOutput() {
 		return output;
@@ -57,37 +57,37 @@ public class RecipeCalcination implements Recipe<Inventory> {
 	public Identifier getId() {
 		return id;
 	}
-	
+
 	public float getFactor() {
 		return factor;
 	}
-	
+
 	public ItemStack getContainer() {
 		return container;
 	}
-	
+
 	@Override
 	public RecipeType<?> getType() {
 		return AoARecipes.CALCINATION;
 	}
-	
+
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return AoARecipes.CALCINATION_SERIALIZER;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public boolean fits(int width, int height) {
 		return true;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public String getGroup() {
 		return group;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public ItemStack getRecipeKindIcon() {

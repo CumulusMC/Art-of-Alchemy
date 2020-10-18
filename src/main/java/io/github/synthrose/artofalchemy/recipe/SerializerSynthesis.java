@@ -56,6 +56,6 @@ public class SerializerSynthesis implements RecipeSerializer<RecipeSynthesis> {
 		buf.writeVarInt(recipe.cost);
 		buf.writeVarInt(recipe.tier);
 	}
-	
+
 
 }

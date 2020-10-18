@@ -15,12 +15,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Environment(EnvType.CLIENT)
 @Mixin(ClientRecipeBook.class)
 public abstract class MixinClientRecipeBook {
-    @Inject(method = "getGroupForRecipe", at = @At(value = "HEAD"), cancellable = true)
-    private static void getGroupForRecipe(Recipe<?> recipe, CallbackInfoReturnable<RecipeBookGroup> cir) {
-        RecipeType<?> type = recipe.getType();
-        if (type == AoARecipes.SYNTHESIS || type == AoARecipes.CALCINATION || type == AoARecipes.DISSOLUTION ||
-                type == AoARecipes.PROJECTION) {
-            cir.setReturnValue(RecipeBookGroup.UNKNOWN);
-        }
-    }
+	@Inject(method = "getGroupForRecipe", at = @At(value = "HEAD"), cancellable = true)
+	private static void getGroupForRecipe(Recipe<?> recipe, CallbackInfoReturnable<RecipeBookGroup> cir) {
+		RecipeType<?> type = recipe.getType();
+		if (type == AoARecipes.SYNTHESIS || type == AoARecipes.CALCINATION || type == AoARecipes.DISSOLUTION ||
+				type == AoARecipes.PROJECTION) {
+			cir.setReturnValue(RecipeBookGroup.UNKNOWN);
+		}
+	}
 }

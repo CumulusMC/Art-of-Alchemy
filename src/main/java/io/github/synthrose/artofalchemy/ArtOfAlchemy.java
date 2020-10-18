@@ -26,43 +26,43 @@ import org.apache.logging.log4j.Logger;
 
 public class ArtOfAlchemy implements ModInitializer {
 
-    public static final String MOD_ID = "artofalchemy";
-    public static final String MOD_NAME = "Art of Alchemy";
+	public static final String MOD_ID = "artofalchemy";
+	public static final String MOD_NAME = "Art of Alchemy";
 
-    public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
+	public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
 
-    public static final ItemGroup ALCHEMY_GROUP = FabricItemGroupBuilder.create(id("alchemy"))
-    		.icon(() -> new ItemStack(AoAItems.MYSTERIOUS_SIGIL)).build();
+	public static final ItemGroup ALCHEMY_GROUP = FabricItemGroupBuilder.create(id("alchemy"))
+			.icon(() -> new ItemStack(AoAItems.MYSTERIOUS_SIGIL)).build();
 
-    @Override
-    public void onInitialize() {
-        log(Level.INFO, "Humankind cannot gain anything without first giving something in return. "
-        		+ "To obtain, something of equal value must be lost.");
+	@Override
+	public void onInitialize() {
+		log(Level.INFO, "Humankind cannot gain anything without first giving something in return. "
+				+ "To obtain, something of equal value must be lost.");
 
-        AutoConfig.register(AoAConfig.class, GsonConfigSerializer::new);
-        AoAEssentia.registerEssentia();
-        AoAFluids.registerFluids();
-        AoABlocks.registerBlocks();
-        AoAItems.registerItems();
-        AoABlockEntities.registerBlockEntities();
-        AoAHandlers.registerHandlers();
-        AoARecipes.registerRecipes();
-        AoADispenserBehavior.registerDispenserBehavior();
-        AoANetworking.initializeNetworking();
-        AoALoot.initialize();
-        WorldTickCallback.EVENT.register((world) -> {
-            if (!world.isClient()) {
-                EssentiaNetworker.get((ServerWorld) world).tick();
-            }
-        });
-    }
+		AutoConfig.register(AoAConfig.class, GsonConfigSerializer::new);
+		AoAEssentia.registerEssentia();
+		AoAFluids.registerFluids();
+		AoABlocks.registerBlocks();
+		AoAItems.registerItems();
+		AoABlockEntities.registerBlockEntities();
+		AoAHandlers.registerHandlers();
+		AoARecipes.registerRecipes();
+		AoADispenserBehavior.registerDispenserBehavior();
+		AoANetworking.initializeNetworking();
+		AoALoot.initialize();
+		WorldTickCallback.EVENT.register((world) -> {
+			if (!world.isClient()) {
+				EssentiaNetworker.get((ServerWorld) world).tick();
+			}
+		});
+	}
 
-    public static Identifier id(String name) {
-    	return new Identifier(MOD_ID, name);
-    }
+	public static Identifier id(String name) {
+		return new Identifier(MOD_ID, name);
+	}
 
-    public static void log(Level level, String message){
-        LOGGER.log(level, message);
-    }
+	public static void log(Level level, String message){
+		LOGGER.log(level, message);
+	}
 
 }

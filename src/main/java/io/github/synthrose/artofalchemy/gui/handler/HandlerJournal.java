@@ -70,7 +70,7 @@ public class HandlerJournal extends SyncedGuiDescription {
 			}
 		};
 		root.add(searchBar, 22, 14, 6 * 18 + 6, 12);
-		
+
 		WSprite background = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/rune_bg.png"));
 		root.add(background, 0, 2 * 18 + 10, 9 * 18, 5 * 18);
 
@@ -92,7 +92,7 @@ public class HandlerJournal extends SyncedGuiDescription {
 		clearButton.setEnabled(ItemJournal.getFormula(this.journal) != Items.AIR);
 
 		root.add(this.createPlayerInventoryPanel(), 0, 8 * 18);
-		
+
 		root.validate(this);
 	}
 

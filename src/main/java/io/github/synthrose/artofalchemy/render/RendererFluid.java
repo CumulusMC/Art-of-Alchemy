@@ -25,23 +25,23 @@ import java.util.function.Function;
 
 @Environment(EnvType.CLIENT)
 public class RendererFluid {
-	
+
 	public static void setupFluidRendering(Fluid still, Fluid flowing, Identifier texture, int color) {
 		Identifier stillTexture = new Identifier(texture.getNamespace(), "block/" + texture.getPath() + "_still");
 		Identifier flowTexture = new Identifier(texture.getNamespace(), "block/" + texture.getPath() + "_flow");
-		
+
 		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEX).register((atlas, registry) -> {
 			registry.register(stillTexture);
 			registry.register(flowTexture);
 		});
-		
+
 		Identifier fluidId = Registry.FLUID.getId(still);
 		Identifier listenerId = new Identifier(fluidId.getNamespace(), fluidId.getPath() + "_reload_listener");
 		Sprite[] sprites = { null, null };
-		
+
 		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES)
 			.registerReloadListener(new SimpleSynchronousResourceReloadListener() {
-			
+
 			@Override
 			public void apply(ResourceManager manager) {
 				Function<Identifier, Sprite> atlas = MinecraftClient.getInstance()
@@ -49,36 +49,36 @@ public class RendererFluid {
 				sprites[0] = atlas.apply(stillTexture);
 				sprites[1] = atlas.apply(flowTexture);
 			}
-			
+
 			@Override
 			public Identifier getFabricId() {
 				return listenerId;
 			}
-			
+
 		});
-		
+
 		FluidRenderHandler renderHandler = new FluidRenderHandler() {
-			
+
 			@Override
 			public Sprite[] getFluidSprites(BlockRenderView view, BlockPos pos, FluidState state) {
 				return sprites;
 			}
-			
+
 			@Override
 			public int getFluidColor(BlockRenderView view, BlockPos pos, FluidState state) {
 				return color;
 			}
-			
+
 		};
-		
+
 		FluidRenderHandlerRegistry.INSTANCE.register(still, renderHandler);
 		FluidRenderHandlerRegistry.INSTANCE.register(flowing, renderHandler);
 	}
-	
+
 	public static void setupFluidRendering(Fluid still, Fluid flowing, Identifier texture) {
 		setupFluidRendering(still, flowing, texture, -1);
 	}
-	
+
 	public static void markTranslucent(Fluid... fluids) {
 		BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), fluids);
 	}

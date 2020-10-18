@@ -46,15 +46,15 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 	protected int maxFuel = 20;
 	protected int progress = 0;
 	protected int maxProgress = getOperationTime();
-	
+
 	protected final DefaultedList<ItemStack> items = DefaultedList.ofSize(3, ItemStack.EMPTY);
 	protected final PropertyDelegate delegate = new PropertyDelegate() {
-		
+
 		@Override
 		public int size() {
 			return 4;
 		}
-		
+
 		@Override
 		public void set(int index, int value) {
 			switch(index) {
@@ -72,7 +72,7 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 				break;
 			}
 		}
-		
+
 		@Override
 		public int get(int index) {
 			switch(index) {
@@ -88,9 +88,9 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 				return 0;
 			}
 		}
-		
+
 	};
-	
+
 	public BlockEntityCalcinator() {
 		this(AoABlockEntities.CALCINATOR);
 		AoAConfig.CalcinatorSettings settings = AoAConfig.get().calcinatorSettings;
@@ -121,27 +121,27 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 	private boolean isBurning() {
 		return fuel > 0;
 	}
-	
+
 	private boolean canCraft(RecipeCalcination recipe) {
 		ItemStack inSlot = items.get(0);
 		ItemStack outSlot = items.get(2);
-		
+
 		if (recipe == null || inSlot.isEmpty()) {
 			return false;
 		} else {
 			ItemStack outStack = recipe.getOutput();
 			ItemStack container = recipe.getContainer();
-			
+
 			float factor = getYield() * recipe.getFactor();
 			if (inSlot.isDamageable()) {
 				factor *= 1.0F - (float) inSlot.getDamage() / inSlot.getMaxDamage();
 			}
 			int count = (int) Math.ceil(factor * outStack.getCount());
-			
+
 			if (container != ItemStack.EMPTY && inSlot.getCount() != container.getCount()) {
 				 return false;
 			}
-			
+
 			if (outSlot.isEmpty()) {
 				return true;
 			} else if (outSlot.getItem() == outStack.getItem()) {
@@ -151,35 +151,35 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 			}
 		}
 	}
-	
+
 	// Be sure to check canCraft() first!
 	private void doCraft(RecipeCalcination recipe) {
 		ItemStack inSlot = items.get(0);
 		ItemStack outSlot = items.get(2);
 		ItemStack outStack = recipe.getOutput();
-		ItemStack container = recipe.getContainer(); 
-				
+		ItemStack container = recipe.getContainer();
+
 		float factor = getYield() * recipe.getFactor();
 		if (inSlot.isDamageable()) {
 			factor *= 1.0F - (float) inSlot.getDamage() / inSlot.getMaxDamage();
 		}
 		int count = AoAHelper.stochasticRound(factor * outStack.getCount());
-		
+
 		if (container != ItemStack.EMPTY) {
 			items.set(0, container.copy());
 		} else {
 			inSlot.decrement(1);
 		}
-		
+
 		if (outSlot.isEmpty()) {
 			items.set(2, outStack.copy());
 			items.get(2).setCount(count);
 		} else {
 			outSlot.increment(count);
 		}
-		
+
 	}
-	
+
 	@Override
 	public CompoundTag toTag(CompoundTag tag) {
 		tag.putInt("fuel", fuel);
@@ -188,7 +188,7 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 		Inventories.toTag(tag, items);
 		return super.toTag(tag);
 	}
-	
+
 	@Override
 	public void fromTag(BlockState state, CompoundTag tag) {
 		super.fromTag(state, tag);
@@ -203,7 +203,7 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 	public DefaultedList<ItemStack> getItems() {
 		return items;
 	}
-	
+
 	@Override
 	public boolean isValid(int slot, ItemStack stack) {
 		if (slot == 2) {
@@ -214,26 +214,26 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 			return true;
 		}
 	}
-	
+
 
 	@Override
 	public void tick() {
 		boolean wasBurning = isBurning();
 		boolean dirty = false;
-		
+
 		if (!world.isClient()) {
 			ItemStack inSlot = items.get(0);
 			ItemStack fuelSlot = items.get(1);
-			
+
 			if (wasBurning) {
 				fuel = MathHelper.clamp(fuel - 1, 0, maxFuel);
 			}
-			
+
 			if (!inSlot.isEmpty() && (isBurning() || FuelHelper.isFuel(fuelSlot))) {
 				RecipeCalcination recipe = world.getRecipeManager()
 						.getFirstMatch(AoARecipes.CALCINATION, this, world).orElse(null);
 				boolean craftable = canCraft(recipe);
-				
+
 				if (!isBurning()) {
 					if (FuelHelper.isFuel(fuelSlot) && craftable) {
 						maxFuel = FuelHelper.fuelTime(fuelSlot);
@@ -244,7 +244,7 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 						progress = 0;
 					}
 				}
-				
+
 				if (isBurning() && craftable) {
 					if (progress < maxProgress) {
 						progress++;
@@ -255,21 +255,21 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 						dirty = true;
 					}
 				}
-				
+
 				if (!craftable && progress != 0) {
 					progress = 0;
 				}
 			} else if (progress != 0) {
 				progress = 0;
 			}
-			
+
 			if (isBurning() != wasBurning) {
 				dirty = true;
 				world.setBlockState(pos, world.getBlockState(pos).with(BlockCalcinator.LIT, isBurning()));
 			}
-			
+
 		}
-		
+
 		if (dirty) {
 			markDirty();
 		}
@@ -279,7 +279,7 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 	public PropertyDelegate getPropertyDelegate() {
 		return delegate;
 	}
-	
+
 	@Override
 	public void markDirty() {
 		super.markDirty();
@@ -287,12 +287,12 @@ public class BlockEntityCalcinator extends BlockEntity implements ImplementedInv
 			sync();
 		}
 	}
-	
+
 	@Override
 	public void fromClientTag(CompoundTag tag) {
 		fromTag(world.getBlockState(pos), tag);
 	}
-	
+
 	@Override
 	public CompoundTag toClientTag(CompoundTag tag) {
 		return toTag(tag);

@@ -19,7 +19,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class BlockCalcinator extends BlockWithEntity {
-	
+
 	public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 	public static final BooleanProperty LIT = Properties.LIT;
 	public static final Settings SETTINGS = Settings
@@ -31,7 +31,7 @@ public class BlockCalcinator extends BlockWithEntity {
 	public static Identifier getId() {
 		return Registry.BLOCK.getId(AoABlocks.CALCINATOR);
 	}
-	
+
 	public BlockCalcinator() {
 		this(SETTINGS);
 	}
@@ -40,28 +40,28 @@ public class BlockCalcinator extends BlockWithEntity {
 		super(settings);
 		setDefaultState(getDefaultState().with(FACING, Direction.NORTH).with(LIT, false));
 	}
-	
+
 	@Override
 	protected void appendProperties(Builder<Block, BlockState> builder) {
 		builder.add(FACING).add(LIT);
 	}
-	
+
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		return super.getPlacementState(ctx).with(FACING, ctx.getPlayerFacing().getOpposite());
 	}
-	
+
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
 			BlockHitResult hit) {
-		
+
 		if (!world.isClient) {
 			BlockEntity blockEntity = world.getBlockEntity(pos);
 			if (blockEntity instanceof BlockEntityCalcinator) {
 				player.openHandledScreen(state.createScreenHandlerFactory(world, pos));
 			}
 		}
-		
+
 		return ActionResult.SUCCESS;
 	}
 
@@ -81,7 +81,7 @@ public class BlockCalcinator extends BlockWithEntity {
 			super.onStateReplaced(state, world, pos, newState, moved);
 		}
 	}
-	
+
 	public BlockState rotate(BlockState state, BlockRotation rotation) {
 		return state.with(FACING, rotation.rotate(state.get(FACING)));
 	}

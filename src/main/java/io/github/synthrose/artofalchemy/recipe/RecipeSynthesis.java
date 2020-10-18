@@ -16,7 +16,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class RecipeSynthesis implements Recipe<Inventory> {
-	
+
 	protected final Identifier id;
 	protected final String group;
 	protected final Ingredient target;
@@ -25,7 +25,7 @@ public class RecipeSynthesis implements Recipe<Inventory> {
 	protected final Ingredient container;
 	protected final int cost;
 	protected final int tier;
-	
+
 	public RecipeSynthesis(Identifier id, String group, Ingredient target, Ingredient materia, EssentiaStack essentia,
 			Ingredient container, int cost, int tier) {
 		this.id = id;
@@ -48,59 +48,59 @@ public class RecipeSynthesis implements Recipe<Inventory> {
 	public ItemStack craft(Inventory inv) {
 		return ItemStack.EMPTY;
 	}
-	
+
 	@Override
 	public Identifier getId() {
 		return id;
 	}
-	
+
 	public Ingredient getMateria() {
 		return materia;
 	}
-	
+
 	public EssentiaStack getEssentia() {
 		return (EssentiaStack) essentia.clone();
 	}
-	
+
 	@Override
 	public ItemStack getOutput() {
 		return ItemStack.EMPTY;
 	}
-	
+
 	public Ingredient getContainer() {
 		return container;
 	}
-	
+
 	public int getCost() {
 		return cost;
 	}
-	
+
 	public int getTier() {
 		return tier;
 	}
-	
+
 	@Override
 	public RecipeType<?> getType() {
 		return AoARecipes.SYNTHESIS;
 	}
-	
+
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return AoARecipes.SYNTHESIS_SERIALIZER;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public boolean fits(int width, int height) {
 		return true;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public String getGroup() {
 		return group;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public ItemStack getRecipeKindIcon() {

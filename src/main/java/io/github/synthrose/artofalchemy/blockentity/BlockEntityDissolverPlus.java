@@ -36,5 +36,5 @@ public class BlockEntityDissolverPlus extends BlockEntityDissolver {
 	public float getEfficiency() {
 		return yield;
 	}
-	
+
 }

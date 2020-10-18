@@ -23,12 +23,12 @@ abstract class FluidAlkahest extends FlowableFluid {
 	public Fluid getStill() {
 		return AoAFluids.ALKAHEST;
 	}
-	
+
 	@Override
 	public Fluid getFlowing() {
 		return AoAFluids.ALKAHEST_FLOWING;
 	}
-	
+
 	@Override
 	public boolean matchesType(Fluid fluid) {
 		return fluid == getStill() || fluid == getFlowing();
@@ -81,15 +81,15 @@ abstract class FluidAlkahest extends FlowableFluid {
 	protected BlockState toBlockState(FluidState state) {
 		return AoABlocks.ALKAHEST.getDefaultState().with(Properties.LEVEL_15, method_15741(state));
 	}
-	
+
 	public static class Flowing extends FluidAlkahest {
-		
+
 		@Override
 		protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
 			super.appendProperties(builder);
 			builder.add(LEVEL);
 		}
-		
+
 //		@Override
 //		protected boolean canBeReplacedWith(FluidState state, BlockView world, BlockPos pos, Fluid fluid,
 //				Direction direction) {
@@ -102,7 +102,7 @@ abstract class FluidAlkahest extends FlowableFluid {
 //				return super.canBeReplacedWith(state, world, pos, fluid, direction);
 //			}
 //		}
-		
+
 		@Override
 		public int getLevel(FluidState state) {
 			return state.get(LEVEL);
@@ -112,21 +112,21 @@ abstract class FluidAlkahest extends FlowableFluid {
 		public boolean isStill(FluidState state) {
 			return false;
 		}
-		
+
 	}
-	
+
 	public static class Still extends FluidAlkahest {
-		
+
 		@Override
 		public int getLevel(FluidState state) {
 			return 8;
 		}
-		
+
 		@Override
 		public boolean isStill(FluidState state) {
 			return true;
 		}
-		
+
 	}
 
 }

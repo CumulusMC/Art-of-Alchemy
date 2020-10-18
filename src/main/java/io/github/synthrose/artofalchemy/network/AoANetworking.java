@@ -42,28 +42,28 @@ public class AoANetworking {
 				});
 	}
 
-	
+
 	public static void sendEssentiaPacket(World world, BlockPos pos, int essentiaId, EssentiaContainer container) {
 		Stream<PlayerEntity> players = PlayerStream.watching(world, pos);
-		
+
 		PacketByteBuf data = new PacketByteBuf(Unpooled.buffer());
 		data.writeInt(essentiaId);
 		data.writeCompoundTag(container.toTag());
 		data.writeBlockPos(pos);
-		
+
 		players.forEach(player -> ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, ESSENTIA_PACKET, data));
 	}
-	
+
 	public static void sendEssentiaPacketWithRequirements(World world, BlockPos pos, int essentiaId,
 														  EssentiaContainer container, EssentiaStack required) {
 		Stream<PlayerEntity> players = PlayerStream.watching(world, pos);
-		
+
 		PacketByteBuf data = new PacketByteBuf(Unpooled.buffer());
 		data.writeInt(essentiaId);
 		data.writeCompoundTag(container.toTag());
 		data.writeCompoundTag(required.toTag());
 		data.writeBlockPos(pos);
-		
+
 		players.forEach(player -> ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, ESSENTIA_PACKET_REQ, data));
 	}
 

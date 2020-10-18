@@ -16,19 +16,19 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class BlockEssentia extends FluidBlock {
-	
+
 	public static final Settings SETTINGS = Settings.copy(Blocks.WATER)
 		.lightLevel((state) -> 9);
 	protected static Essentia essentia;
-	
+
 	public BlockEssentia(Essentia essentia) {
 		super(AoAFluids.ESSENTIA_FLUIDS.get(essentia), SETTINGS);
 	}
-	
+
 	public Essentia getEssentia() {
 		return essentia;
 	}
-	
+
 	@Override
 	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
 		entity.damage(DamageSource.MAGIC, 2);
@@ -37,7 +37,7 @@ public class BlockEssentia extends FluidBlock {
 		world.addParticle(ParticleTypes.LARGE_SMOKE, entity.getX(), entity.getY(), entity.getZ(),
 				0.0D, 0.0D, 0.0D);
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {

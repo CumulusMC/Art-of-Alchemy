@@ -9,7 +9,7 @@ public class FuelHelper {
 	public static boolean isFuel(Item item) {
 		return AbstractFurnaceBlockEntity.createFuelTimeMap().containsKey(item);
 	}
-	
+
 	public static boolean isFuel(ItemStack stack) {
 		if (stack.isEmpty()) {
 			return false;
@@ -17,11 +17,11 @@ public class FuelHelper {
 			return isFuel(stack.getItem());
 		}
 	}
-	
+
 	public static int fuelTime(Item item) {
 		return AbstractFurnaceBlockEntity.createFuelTimeMap().getOrDefault(item, 0);
 	}
-	
+
 	public static int fuelTime(ItemStack stack) {
 		if (stack.isEmpty()) {
 			return 0;

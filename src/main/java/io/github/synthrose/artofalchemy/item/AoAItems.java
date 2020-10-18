@@ -66,18 +66,18 @@ public class AoAItems {
 			String name = "materia_" + rank.toString().toLowerCase();
 			MATERIA_DUSTS.put(rank, register(name, new ItemMateria(defaults(), rank)));
 		}
-		
+
 		register("alkahest_bucket", ALKAHEST_BUCKET);
-		
+
 		// Register essentia buckets; add-on essentia buckets will be registered to THEIR namespace
 		RegistryEssentia.INSTANCE.forEach((Essentia essentia, Identifier id) -> {
 			Identifier itemId = new Identifier(id.getNamespace(), "essentia_bucket_" + id.getPath());
 			ESSENTIA_BUCKETS.put(essentia, register(itemId,
 					new BucketItem(AoAFluids.ESSENTIA_FLUIDS.get(essentia), defaults().maxCount(1))));
 		});
-		
+
 	}
-	
+
 	public static Item register(String name, Item item) {
 		return register(ArtOfAlchemy.id(name), item);
 	}

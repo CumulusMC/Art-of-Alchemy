@@ -11,7 +11,7 @@ import net.minecraft.util.math.Vec3i;
 import java.util.Random;
 
 public class AoAHelper {
-	
+
 	public static int stochasticRound(double x) {
 		Random r = new Random();
 		double frac = MathHelper.fractionalPart(x);
@@ -53,5 +53,5 @@ public class AoAHelper {
 	public static int combineColor(Vec3i color) {
 		return (color.getX() << 16) | (color.getY() << 8) | (color.getZ());
 	}
-	
+
 }

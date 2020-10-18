@@ -26,7 +26,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class BlockDissolver extends BlockWithEntity {
-	
+
 	public static final BooleanProperty FILLED = BooleanProperty.of("filled");
 	public static final BooleanProperty LIT = Properties.LIT;
 	public static final Settings SETTINGS = Settings
@@ -34,7 +34,7 @@ public class BlockDissolver extends BlockWithEntity {
 		.strength(5.0f, 6.0f)
 		.lightLevel((state) -> state.get(LIT) ? 15 : 0)
 		.nonOpaque();
-	
+
 	public static Identifier getId() {
 		return Registry.BLOCK.getId(AoABlocks.DISSOLVER);
 	}
@@ -52,18 +52,18 @@ public class BlockDissolver extends BlockWithEntity {
 	protected void appendProperties(Builder<Block, BlockState> builder) {
 		builder.add(FILLED).add(LIT);
 	}
-	
+
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		return super.getPlacementState(ctx);
 	}
-	
+
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
 			BlockHitResult hit) {
-		
+
 		ItemStack inHand = player.getStackInHand(hand);
-		
+
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BlockEntityDissolver) {
 			BlockEntityDissolver dissolver = (BlockEntityDissolver) blockEntity;
@@ -88,7 +88,7 @@ public class BlockDissolver extends BlockWithEntity {
 		} else {
 			return ActionResult.PASS;
 		}
-		
+
 	}
 
 	@Override

@@ -40,7 +40,7 @@ public class RecipeProjection implements Recipe<Inventory> {
 	public ItemStack craft(Inventory inv) {
 		return output.copy();
 	}
-	
+
 	public Ingredient getInput() {
 		return input;
 	}
@@ -48,7 +48,7 @@ public class RecipeProjection implements Recipe<Inventory> {
 	public int getCost() {
 		return cost;
 	}
-	
+
 	@Override
 	public ItemStack getOutput() {
 		return output;
@@ -62,29 +62,29 @@ public class RecipeProjection implements Recipe<Inventory> {
 	public Identifier getId() {
 		return id;
 	}
-	
+
 	@Override
 	public RecipeType<?> getType() {
 		return AoARecipes.PROJECTION;
 	}
-	
+
 	@Override
 	public RecipeSerializer<?> getSerializer() {
 		return AoARecipes.PROJECTION_SERIALIZER;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public boolean fits(int width, int height) {
 		return true;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public String getGroup() {
 		return group;
 	}
-	
+
 	@Override
 	@Environment(EnvType.CLIENT)
 	public ItemStack getRecipeKindIcon() {

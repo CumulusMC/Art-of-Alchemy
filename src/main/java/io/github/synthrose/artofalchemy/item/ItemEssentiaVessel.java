@@ -27,21 +27,21 @@ import java.util.HashSet;
 import java.util.List;
 
 public class ItemEssentiaVessel extends Item {
-	
+
 	public final int capacity;
 	public final Essentia type;
 	private String translationKey;
-	
+
 	public ItemEssentiaVessel(Settings settings, Essentia type) {
 		super(settings.maxCount(1));
 		capacity = AoAConfig.get().vesselCapacity;
 		this.type = type;
 	}
-	
+
 	public ItemEssentiaVessel(Settings settings) {
 		this(settings, null);
 	}
-	
+
 	public static EssentiaContainer getContainer(ItemStack stack) {
 		EssentiaContainer container = EssentiaContainer.of(stack);
 		Essentia type = null;
@@ -58,25 +58,25 @@ public class ItemEssentiaVessel extends Item {
 		}
 		return container;
 	}
-	
+
 	public void setContainer(ItemStack stack, EssentiaContainer container) {
 		if (type != null) {
 			container.setWhitelist(new HashSet<>()).whitelist(type).setWhitelistEnabled(true);
 		}
 		container.in(stack);
 	}
-	
+
 	@Override
 	public void onCraft(ItemStack stack, World world, PlayerEntity player) {
 		EssentiaContainer container = getContainer(stack);
 		setContainer(stack, container);
 		super.onCraft(stack, world, player);
 	}
-	
+
 	public static int useStackOnBE(ItemStack stack, BlockEntity be) {
 		EssentiaContainer container = getContainer(stack);
 		int transferred = 0;
-		
+
 		if (be instanceof HasEssentia) {
 			HasEssentia target = (HasEssentia) be;
 			for (int i = 0; i < target.getNumContainers() && transferred == 0; i++) {
@@ -96,7 +96,7 @@ public class ItemEssentiaVessel extends Item {
 				be.getWorld().playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}
 		}
-		
+
 		container.in(stack);
 		return transferred;
 	}
@@ -119,13 +119,13 @@ public class ItemEssentiaVessel extends Item {
 		CompoundTag tag = stack.getOrCreateTag();
 		tag.putInt("color", getContainer(stack).getColor());
 	}
-	
+
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext ctx) {
 		PlayerEntity player = ctx.getPlayer();
 		BlockEntity be = ctx.getWorld().getBlockEntity(ctx.getBlockPos());
 		int transferred = useStackOnBE(ctx.getStack(), be);
-		
+
 		if (player != null) {
 			if (transferred > 0) {
 				player.sendMessage(new TranslatableText(tooltipPrefix() + "pulled", +transferred), true);
@@ -133,7 +133,7 @@ public class ItemEssentiaVessel extends Item {
 				player.sendMessage(new TranslatableText(tooltipPrefix() + "pushed", -transferred), true);
 			}
 		}
-		
+
 		if (transferred != 0) {
 			be.markDirty();
 			setColor(ctx.getStack());
@@ -142,7 +142,7 @@ public class ItemEssentiaVessel extends Item {
 			return ActionResult.PASS;
 		}
 	}
-	
+
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
 		if (user.isSneaking()) {
@@ -182,18 +182,18 @@ public class ItemEssentiaVessel extends Item {
 	@Environment(EnvType.CLIENT)
 	@Override
 	public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext ctx) {
-		
+
 		if (world == null) {
 			return;
 		}
-		
+
 		EssentiaContainer container = getContainer(stack);
 		String prefix = tooltipPrefix();
 
 		if (((ItemEssentiaVessel) stack.getItem()).type != null) {
 			tooltip.add(new TranslatableText(prefix + "deprecated").formatted(Formatting.DARK_RED));
 		}
-		
+
 		if (container.isInfinite()) {
 			tooltip.add(new TranslatableText(prefix + "infinite").formatted(Formatting.LIGHT_PURPLE));
 			if (container.isWhitelistEnabled()) {
@@ -206,7 +206,7 @@ public class ItemEssentiaVessel extends Item {
 					}
 				}
 			}
-			
+
 		} else if (container.hasUnlimitedCapacity()){
 			if (container.isWhitelistEnabled() && container.getWhitelist().size() == 1) {
 				for (Essentia essentia : container.getWhitelist()) {
@@ -224,7 +224,7 @@ public class ItemEssentiaVessel extends Item {
 					}
 				}
 			}
-			
+
 		} else {
 			if (container.isWhitelistEnabled() && container.getWhitelist().size() == 1) {
 				for (Essentia essentia : container.getWhitelist()) {
@@ -244,7 +244,7 @@ public class ItemEssentiaVessel extends Item {
 				}
 			}
 		}
-		
+
 		if (!container.isInput() && !container.isOutput()) {
 			tooltip.add(new TranslatableText(prefix + "locked").formatted(Formatting.RED));
 		} else if (!container.isInput()) {
@@ -252,10 +252,10 @@ public class ItemEssentiaVessel extends Item {
 		} else if (!container.isOutput()) {
 			tooltip.add(new TranslatableText(prefix + "input").formatted(Formatting.RED));
 		}
-		
+
 		super.appendTooltip(stack, world, tooltip, ctx);
 	}
-	
+
 	@Override
 	protected String getOrCreateTranslationKey() {
 		if (translationKey == null) {
@@ -263,12 +263,12 @@ public class ItemEssentiaVessel extends Item {
 		}
 		return this.translationKey;
 	}
-	
+
 	@Override
 	public String getTranslationKey() {
 		return getOrCreateTranslationKey();
 	}
-	
+
 	private String tooltipPrefix() {
 		return getTranslationKey() + ".tooltip_";
 	}

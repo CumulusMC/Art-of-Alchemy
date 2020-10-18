@@ -7,7 +7,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.registry.Registry;
 
 public class AoABlockEntities {
-	
+
 	public static final BlockEntityType<?> CALCINATOR = BlockEntityType.Builder.create(BlockEntityCalcinator::new, AoABlocks.CALCINATOR).build(null);
 	public static final BlockEntityType<?> CALCINATOR_PLUS = BlockEntityType.Builder.create(BlockEntityCalcinatorPlus::new, AoABlocks.CALCINATOR_PLUS).build(null);
 	public static final BlockEntityType<?> DISSOLVER = BlockEntityType.Builder.create(BlockEntityDissolver::new, AoABlocks.DISSOLVER).build(null);
@@ -33,7 +33,7 @@ public class AoABlockEntities {
 		register("elemental_centrifuge", ELEMENT_CENTRIFUGE);
 		register("pipe", PIPE);
 	}
-	
+
 	public static void register(String name, BlockEntityType<? extends BlockEntity> blockEntity) {
 		Registry.register(Registry.BLOCK_ENTITY_TYPE, ArtOfAlchemy.id(name), blockEntity);
 	}

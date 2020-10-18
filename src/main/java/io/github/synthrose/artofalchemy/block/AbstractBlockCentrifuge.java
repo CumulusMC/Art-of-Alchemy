@@ -30,17 +30,17 @@ abstract public class AbstractBlockCentrifuge extends Block implements BlockEnti
 		super(SETTINGS);
 		setDefaultState(getDefaultState().with(FACING, Direction.NORTH));
 	}
-	
-	@Override	
+
+	@Override
 	protected void appendProperties(Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
-	
+
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		return super.getPlacementState(ctx).with(FACING, ctx.getPlayerFacing().getOpposite());
 	}
-	
+
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
 							  BlockHitResult hit) {
@@ -55,7 +55,7 @@ abstract public class AbstractBlockCentrifuge extends Block implements BlockEnti
 		}
 		return ActionResult.SUCCESS;
 	}
-	
+
 	public BlockState rotate(BlockState state, BlockRotation rotation) {
 		return state.with(FACING, rotation.rotate(state.get(FACING)));
 	}

@@ -4,14 +4,14 @@ import net.minecraft.util.Rarity;
 
 public enum MateriaRank {
 	OMEGA (7, Rarity.EPIC),
-	S     (6, Rarity.RARE),
-	A     (5, Rarity.UNCOMMON),
-	B     (4),
-	C     (3),
-	D     (2),
-	E     (1),
-	F     (0);
-	
+	S	 (6, Rarity.RARE),
+	A	 (5, Rarity.UNCOMMON),
+	B	 (4),
+	C	 (3),
+	D	 (2),
+	E	 (1),
+	F	 (0);
+
 	public final int tier;
 	public final Rarity rarity;
 
@@ -24,7 +24,7 @@ public enum MateriaRank {
 		this.tier = tier;
 		this.rarity = rarity;
 	}
-	
+
 	static MateriaRank ofTier(int tier) {
 		for (int i = 0; i < values().length; i++) {
 			MateriaRank rank = values()[i];
@@ -34,5 +34,5 @@ public enum MateriaRank {
 		}
 		return null;
 	}
-	
+
 }

@@ -24,14 +24,14 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 public class BlockSynthesizer extends BlockWithEntity {
-	
+
 	public static final BooleanProperty LIT = Properties.LIT;
 	public static final Settings SETTINGS = Settings
 		.of(Material.STONE)
 		.strength(5.0f, 6.0f)
 		.lightLevel((state) -> state.get(LIT) ? 15 : 0)
 		.nonOpaque();
-	
+
 	public static Identifier getId() {
 		return Registry.BLOCK.getId(AoABlocks.SYNTHESIZER);
 	}
@@ -44,23 +44,23 @@ public class BlockSynthesizer extends BlockWithEntity {
 		super(settings);
 		setDefaultState(getDefaultState().with(LIT, false));
 	}
-	
+
 	@Override
 	protected void appendProperties(Builder<Block, BlockState> builder) {
 		builder.add(LIT);
 	}
-	
+
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		return super.getPlacementState(ctx);
 	}
-	
+
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
 			BlockHitResult hit) {
-		
+
 		ItemStack inHand = player.getStackInHand(hand);
-		
+
 		BlockEntity blockEntity = world.getBlockEntity(pos);
 		if (blockEntity instanceof BlockEntitySynthesizer) {
 			if (inHand.getItem() == AoAItems.ESSENTIA_VESSEL) {
@@ -77,7 +77,7 @@ public class BlockSynthesizer extends BlockWithEntity {
 		} else {
 			return ActionResult.PASS;
 		}
-		
+
 	}
 
 	@Override

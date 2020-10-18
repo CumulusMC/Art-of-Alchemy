@@ -4,7 +4,7 @@ import io.github.synthrose.artofalchemy.ArtOfAlchemy;
 import net.minecraft.util.registry.Registry;
 
 public class AoAEssentia {
-	
+
 	public static final Essentia MERCURY = new Essentia(0x9291CC);
 	public static final Essentia VENUS = new Essentia(0xEF91CF);
 	public static final Essentia TELLUS = new Essentia(0x20761C);
@@ -18,7 +18,7 @@ public class AoAEssentia {
 	public static final Essentia CERES = new Essentia(0x5D3E22);
 	public static final Essentia PLUTO = new Essentia(0x185665);
 	public static final Essentia VOID = new Essentia(0x5E1CD9);
-	
+
 	public static void registerEssentia() {
 		register("mercury", MERCURY);
 		register("venus", VENUS);
@@ -34,9 +34,9 @@ public class AoAEssentia {
 		register("pluto", PLUTO);
 		register("void", VOID);
 	}
-	
+
 	public static Essentia register(String name, Essentia essentia) {
 		return Registry.register(RegistryEssentia.INSTANCE, ArtOfAlchemy.id(name), essentia);
 	}
-	
+
 }

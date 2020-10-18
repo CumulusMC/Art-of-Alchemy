@@ -14,7 +14,7 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 
 public class WEssentiaSubPanel extends WPlainPanel {
-	
+
 	private Essentia essentia = null;
 	private Integer amount = 0;
 	private Integer required = 0;
@@ -22,18 +22,18 @@ public class WEssentiaSubPanel extends WPlainPanel {
 	private final WSprite sprite = new WSprite(null);
 	private final WLabel amtLabel = new WLabel("0");
 	private final WLabel typeLabel = new WLabel("Empty");
-	
+
 	public WEssentiaSubPanel() {
 		bg.setParent(this);
 		add(bg, -4, -4, 54, 18);
-		
+
 		sprite.setParent(this);
 		add(sprite, 25, -4, 18, 18);
-		
+
 		amtLabel.setHorizontalAlignment(HorizontalAlignment.RIGHT);
 		amtLabel.setParent(this);
 		add(amtLabel, 8, -4);
-		
+
 		typeLabel.setHorizontalAlignment(HorizontalAlignment.LEFT);
 		typeLabel.setParent(this);
 		add(typeLabel, -3, 5);
@@ -57,7 +57,7 @@ public class WEssentiaSubPanel extends WPlainPanel {
 		amtLabel.setColor(WLabel.DEFAULT_TEXT_COLOR, WLabel.DEFAULT_DARKMODE_TEXT_COLOR);
 		this.layout();
 	}
-	
+
 	public void setEssentia(Essentia essentia, Integer amount, Integer required) {
 		setEssentia(essentia, amount);
 		this.required = required;
@@ -71,11 +71,11 @@ public class WEssentiaSubPanel extends WPlainPanel {
 			}
 		}
 	}
-	
+
 	public Essentia getEssentia() {
 		return essentia;
 	}
-	
+
 	public Integer getAmount() {
 		return amount;
 	}

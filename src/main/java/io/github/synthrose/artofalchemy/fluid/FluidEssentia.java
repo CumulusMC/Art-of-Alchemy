@@ -19,13 +19,13 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
 abstract class FluidEssentia extends FlowableFluid {
-	
+
 	protected final Essentia essentia;
-	
+
 	public FluidEssentia(Essentia essentia) {
 		this.essentia = essentia;
 	}
-	
+
 	public Essentia getEssentiaType() {
 		return essentia;
 	}
@@ -34,12 +34,12 @@ abstract class FluidEssentia extends FlowableFluid {
 	public Fluid getStill() {
 		return AoAFluids.ESSENTIA_FLUIDS.get(essentia);
 	}
-	
+
 	@Override
 	public Fluid getFlowing() {
 		return AoAFluids.ESSENTIA_FLUIDS_FLOWING.get(essentia);
 	}
-	
+
 	@Override
 	public boolean matchesType(Fluid fluid) {
 		return fluid == getStill() || fluid == getFlowing();
@@ -92,13 +92,13 @@ abstract class FluidEssentia extends FlowableFluid {
 	protected BlockState toBlockState(FluidState state) {
 		return AoABlocks.ESSENTIA.get(essentia).getDefaultState().with(Properties.LEVEL_15, method_15741(state));
 	}
-	
+
 	public static class Flowing extends FluidEssentia {
-		
+
 		public Flowing(Essentia essentia) {
 			super(essentia);
 		}
-		
+
 //		@Override
 //		protected boolean canBeReplacedWith(FluidState state, BlockView world, BlockPos pos, Fluid fluid,
 //				Direction direction) {
@@ -117,7 +117,7 @@ abstract class FluidEssentia extends FlowableFluid {
 			super.appendProperties(builder);
 			builder.add(LEVEL);
 		}
-		
+
 		@Override
 		public int getLevel(FluidState state) {
 			return state.get(LEVEL);
@@ -127,11 +127,11 @@ abstract class FluidEssentia extends FlowableFluid {
 		public boolean isStill(FluidState state) {
 			return false;
 		}
-		
+
 	}
-	
+
 	public static class Still extends FluidEssentia {
-		
+
 		public Still(Essentia essentia) {
 			super(essentia);
 		}
@@ -140,12 +140,12 @@ abstract class FluidEssentia extends FlowableFluid {
 		public int getLevel(FluidState state) {
 			return 8;
 		}
-		
+
 		@Override
 		public boolean isStill(FluidState state) {
 			return true;
 		}
-		
+
 	}
 
 }

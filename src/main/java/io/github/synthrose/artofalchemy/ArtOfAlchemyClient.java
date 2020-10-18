@@ -10,12 +10,12 @@ import net.fabricmc.api.Environment;
 @Environment(EnvType.CLIENT)
 public class ArtOfAlchemyClient implements ClientModInitializer {
 
-    @Environment(EnvType.CLIENT)
-    @Override
-    public void onInitializeClient() {
-    	AoAScreens.registerScreens();
-    	AoARenderers.registerRenderers();
-    	AoAClientNetworking.initializeClientNetworking();
-    }
+	@Environment(EnvType.CLIENT)
+	@Override
+	public void onInitializeClient() {
+		AoAScreens.registerScreens();
+		AoARenderers.registerRenderers();
+		AoAClientNetworking.initializeClientNetworking();
+	}
 
 }

@@ -17,40 +17,40 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
 public class HandlerDissolver extends SyncedGuiDescription {
-	
+
 	final BlockPos pos;
 	final WEssentiaPanel essentiaPanel;
-	
+
 	@SuppressWarnings("MethodCallSideOnly")
 	public HandlerDissolver(int syncId, PlayerInventory playerInventory, ScreenHandlerContext ctx) {
 		super(AoAHandlers.DISSOLVER, syncId, playerInventory, getBlockInventory(ctx), getBlockPropertyDelegate(ctx));
-		
+
 		pos = ctx.run((world, pos) -> pos, null);
-		
+
 		WGridPanel root = new WGridPanel(1);
 		setRootPanel(root);
 		root.setSize(162, 128 + 36);
-		
+
 		WSprite background = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/rune_bg.png"));
 		root.add(background, 0, 0, 9 * 18, 5 * 18);
-		
+
 		WItemSlot inSlot = WItemSlot.of(blockInventory, 0);
 		root.add(inSlot, 2 * 18, 2 * 18);
-		
+
 		WBar tankBar = new WBar(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/tank_empty.png"),
 				new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/tank_full.png"),
 				0, 1, Direction.UP);
 		tankBar.withTooltip("gui." + ArtOfAlchemy.MOD_ID + ".alkahest_tooltip");
 		root.add(tankBar, 0, 18, 2 * 18, 3 * 18);
-		
+
 		WBar progressBar = new WBar(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/progress_off.png"),
 				new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/progress_magenta.png"), 2, 3, Direction.RIGHT);
 		root.add(progressBar, 3 * 18, 2 * 18 + 1, 3 * 18, 18);
-		
+
 		WLabel title = new WLabel(new TranslatableText("block.artofalchemy.dissolution_chamber"), WLabel.DEFAULT_TEXT_COLOR);
 		title.setHorizontalAlignment(HorizontalAlignment.CENTER);
 		root.add(title, 0, -1, 9 * 18, 18);
-		
+
 		WDynamicLabel alert = new WDynamicLabel(() -> {
 			switch (propertyDelegate.get(4)) {
 			case 2:
@@ -63,17 +63,17 @@ public class HandlerDissolver extends SyncedGuiDescription {
 		}, 0xFF5555);
 		alert.setAlignment(HorizontalAlignment.CENTER);
 		root.add(alert, 0, -1 * 18, 9 * 18, 18);
-		
+
 		EssentiaContainer essentia = getEssentia(ctx);
 		essentiaPanel = new WEssentiaPanel(essentia);
 		root.add(essentiaPanel, 6 * 18 - 1, 18 - 7, 3 * 18, 4 * 18);
-		
+
 		root.add(this.createPlayerInventoryPanel(), 0, 5 * 18);
-		
+
 		root.validate(this);
-		
+
 	}
-	
+
 	public void updateEssentia(int essentiaId, EssentiaContainer essentia, BlockPos pos) {
 		if (pos.equals(this.pos)) {
 			essentiaPanel.updateEssentia(essentia);

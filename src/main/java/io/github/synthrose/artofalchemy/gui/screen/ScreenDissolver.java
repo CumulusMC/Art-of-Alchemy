@@ -20,5 +20,5 @@ public class ScreenDissolver extends CottonInventoryScreen<HandlerDissolver>
 	public void updateEssentia(int essentiaId, EssentiaContainer essentia, BlockPos pos) {
 		handler.updateEssentia(essentiaId, essentia, pos);
 	}
-		
+
 }

@@ -18,111 +18,111 @@ import java.util.Map;
 
 public class BlockEntityPipe extends BlockEntity implements BlockEntityClientSerializable, RenderAttachmentBlockEntity {
 
-    private Map<Direction, IOFace> faces = new HashMap<>();
+	private Map<Direction, IOFace> faces = new HashMap<>();
 
-    public BlockEntityPipe() {
-        super(AoABlockEntities.PIPE);
-        for (Direction dir : Direction.values()) {
-            faces.put(dir, IOFace.NONE);
-        }
-    }
+	public BlockEntityPipe() {
+		super(AoABlockEntities.PIPE);
+		for (Direction dir : Direction.values()) {
+			faces.put(dir, IOFace.NONE);
+		}
+	}
 
-    @Override
-    public CompoundTag toTag(CompoundTag tag) {
-        for (Direction dir : Direction.values()) {
-            tag.putString(dir.toString(), faces.get(dir).toString());
-        }
-        return super.toTag(tag);
-    }
+	@Override
+	public CompoundTag toTag(CompoundTag tag) {
+		for (Direction dir : Direction.values()) {
+			tag.putString(dir.toString(), faces.get(dir).toString());
+		}
+		return super.toTag(tag);
+	}
 
-    @Override
-    public void fromTag(BlockState state, CompoundTag tag) {
-        super.fromTag(state, tag);
-        for (Direction dir : Direction.values()) {
-            faces.put(dir, IOFace.valueOf(tag.getString(dir.toString())));
-        }
-    }
+	@Override
+	public void fromTag(BlockState state, CompoundTag tag) {
+		super.fromTag(state, tag);
+		for (Direction dir : Direction.values()) {
+			faces.put(dir, IOFace.valueOf(tag.getString(dir.toString())));
+		}
+	}
 
-    public Map<Direction, IOFace> getFaces() {
-        return faces;
-    }
+	public Map<Direction, IOFace> getFaces() {
+		return faces;
+	}
 
-    public void setFaces(Map<Direction, IOFace> faces) {
-        this.faces = faces;
-    }
+	public void setFaces(Map<Direction, IOFace> faces) {
+		this.faces = faces;
+	}
 
-    public IOFace getFace(Direction dir) {
-        return faces.get(dir);
-    }
+	public IOFace getFace(Direction dir) {
+		return faces.get(dir);
+	}
 
-    public void setFace(Direction dir, IOFace face) {
-        faces.put(dir, face);
-    }
+	public void setFace(Direction dir, IOFace face) {
+		faces.put(dir, face);
+	}
 
-    public void fromClientTag(CompoundTag tag) {
-        fromTag(world.getBlockState(pos), tag);
-    }
+	public void fromClientTag(CompoundTag tag) {
+		fromTag(world.getBlockState(pos), tag);
+	}
 
-    @Override
-    public CompoundTag toClientTag(CompoundTag tag) {
-        return toTag(tag);
-    }
+	@Override
+	public CompoundTag toClientTag(CompoundTag tag) {
+		return toTag(tag);
+	}
 
-    @Override
-    public void sync() {
-        BlockEntityClientSerializable.super.sync();
-    }
+	@Override
+	public void sync() {
+		BlockEntityClientSerializable.super.sync();
+	}
 
-    @Override
-    public Object getRenderAttachmentData() {
-        assert Direction.values().length == 6;
-        IOFace[] faceConfig = new IOFace[6];
-        for (final Map.Entry<Direction, IOFace> entry : faces.entrySet()) {
-            faceConfig[entry.getKey().ordinal()] = entry.getValue();
-        }
-        return faceConfig;
-    }
+	@Override
+	public Object getRenderAttachmentData() {
+		assert Direction.values().length == 6;
+		IOFace[] faceConfig = new IOFace[6];
+		for (final Map.Entry<Direction, IOFace> entry : faces.entrySet()) {
+			faceConfig[entry.getKey().ordinal()] = entry.getValue();
+		}
+		return faceConfig;
+	}
 
-    // Convenience function which performs the correct downcast of the Object returned
-    // in getRenderAttachmentData()
-    public static IOFace[] getRenderAttachedFaceConfig(BlockRenderView blockRenderView, BlockPos blockPos) {
-        RenderAttachedBlockView renderAttachedBlockView = ((RenderAttachedBlockView) blockRenderView);
-        Object renderAttachment = renderAttachedBlockView.getBlockEntityRenderAttachment(blockPos);
-        return (IOFace[]) renderAttachment;
-    }
+	// Convenience function which performs the correct downcast of the Object returned
+	// in getRenderAttachmentData()
+	public static IOFace[] getRenderAttachedFaceConfig(BlockRenderView blockRenderView, BlockPos blockPos) {
+		RenderAttachedBlockView renderAttachedBlockView = ((RenderAttachedBlockView) blockRenderView);
+		Object renderAttachment = renderAttachedBlockView.getBlockEntityRenderAttachment(blockPos);
+		return (IOFace[]) renderAttachment;
+	}
 
-    public enum IOFace implements StringIdentifiable {
-        NONE,
-        CONNECT,
-        BLOCK,
-        INSERTER(NetworkNode.Type.PULL),
-        EXTRACTOR(NetworkNode.Type.PUSH),
-        PASSIVE(NetworkNode.Type.PASSIVE);
+	public enum IOFace implements StringIdentifiable {
+		NONE,
+		CONNECT,
+		BLOCK,
+		INSERTER(NetworkNode.Type.PULL),
+		EXTRACTOR(NetworkNode.Type.PUSH),
+		PASSIVE(NetworkNode.Type.PASSIVE);
 
-        private final String string;
-        private final NetworkNode.Type type;
+		private final String string;
+		private final NetworkNode.Type type;
 
-        IOFace() {
-            this(null);
-        }
+		IOFace() {
+			this(null);
+		}
 
-        IOFace(NetworkNode.Type type) {
-            this.string = toString().toLowerCase();
-            this.type = type;
-        }
+		IOFace(NetworkNode.Type type) {
+			this.string = toString().toLowerCase();
+			this.type = type;
+		}
 
-        public NetworkNode.Type getType() {
-            return type;
-        }
+		public NetworkNode.Type getType() {
+			return type;
+		}
 
-        public boolean isNode() {
-            return type != null;
-        }
+		public boolean isNode() {
+			return type != null;
+		}
 
-        @Override
-        public String asString() {
-            return string;
-        }
-    }
+		@Override
+		public String asString() {
+			return string;
+		}
+	}
 
 }

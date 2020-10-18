@@ -43,6 +43,6 @@ public class SerializerDissolution implements RecipeSerializer<RecipeDissolution
 		buf.writeFloat(recipe.factor);
 		buf.writeItemStack(recipe.container);
 	}
-	
+
 
 }

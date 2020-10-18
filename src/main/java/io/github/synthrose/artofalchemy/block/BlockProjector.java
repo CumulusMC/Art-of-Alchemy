@@ -46,17 +46,17 @@ public class BlockProjector extends BlockWithEntity {
 		super(settings);
 		setDefaultState(getDefaultState().with(LIT, false));
 	}
-	
+
 	@Override
 	protected void appendProperties(Builder<Block, BlockState> builder) {
 		builder.add(LIT);
 	}
-	
+
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		return super.getPlacementState(ctx);
 	}
-	
+
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand,
 			BlockHitResult hit) {
@@ -81,7 +81,7 @@ public class BlockProjector extends BlockWithEntity {
 		} else {
 			return ActionResult.PASS;
 		}
-		
+
 	}
 
 	@Override

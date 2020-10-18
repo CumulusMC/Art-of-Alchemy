@@ -7,9 +7,9 @@ import net.minecraft.util.math.BlockPos;
 public interface EssentiaScreen {
 
 	void updateEssentia(int essentiaId, EssentiaContainer container, BlockPos pos);
-	
+
 	default void updateEssentia(int essentiaId, EssentiaContainer container, EssentiaStack required, BlockPos pos) {
 		updateEssentia(essentiaId, container, pos);
 	}
-	
+
 }

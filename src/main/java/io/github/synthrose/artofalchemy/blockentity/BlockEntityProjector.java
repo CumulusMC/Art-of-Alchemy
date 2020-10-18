@@ -120,7 +120,7 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 	public int getAlkahest() {
 		return alkahest;
 	}
-	
+
 	@Override
 	public boolean setAlkahest(int amount) {
 		if (amount >= 0 && amount <= maxAlkahest) {
@@ -131,18 +131,18 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 			return false;
 		}
 	}
-	
+
 	private boolean canCraft(RecipeProjection recipe) {
 		ItemStack inSlot = items.get(0);
 		ItemStack outSlot = items.get(1);
-		
+
 		if (recipe == null || inSlot.isEmpty()) {
 			return false;
 		} else {
 			ItemStack outStack = recipe.getOutput();
 			int alkCost = recipe.getAlkahest();
 			int itemCost = recipe.getCost();
-			
+
 			if (alkahest < alkCost || inSlot.getCount() < itemCost) {
 				return false;
 			} else {
@@ -156,7 +156,7 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 			}
 		}
 	}
-	
+
 	// Be sure to check canCraft() first!
 	private void doCraft(RecipeProjection recipe) {
 		ItemStack inSlot = items.get(0);
@@ -173,7 +173,7 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 			outSlot.increment(outStack.getCount());
 		}
 	}
-	
+
 	@Override
 	public CompoundTag toTag(CompoundTag tag) {
 		tag.putInt("alkahest", alkahest);
@@ -181,7 +181,7 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 		Inventories.toTag(tag, items);
 		return super.toTag(tag);
 	}
-	
+
 	@Override
 	public void fromTag(BlockState state, CompoundTag tag) {
 		super.fromTag(state, tag);
@@ -196,7 +196,7 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 	public DefaultedList<ItemStack> getItems() {
 		return items;
 	}
-	
+
 	@Override
 	public boolean isValid(int slot, ItemStack stack) {
 		return slot == 0;
@@ -205,18 +205,18 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 	@Override
 	public void tick() {
 		boolean dirty = false;
-		
+
 		if (!world.isClient()) {
 			ItemStack inSlot = items.get(0);
 			boolean canWork = false;
-			
+
 			if (inSlot.isEmpty() || !hasAlkahest()) {
 				canWork = false;
 			} else {
 				RecipeProjection recipe = world.getRecipeManager()
 						.getFirstMatch(AoARecipes.PROJECTION, this, world).orElse(null);
 				canWork = canCraft(recipe);
-			
+
 				if (canWork) {
 					if (progress < maxProgress) {
 						if (!lit) {
@@ -232,7 +232,7 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 					}
 				}
 			}
-			
+
 			if (!canWork) {
 				if (progress != 0) {
 					progress = 0;
@@ -243,7 +243,7 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 				}
 			}
 		}
-		
+
 		if (dirty) {
 			markDirty();
 		}
@@ -253,7 +253,7 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 	public PropertyDelegate getPropertyDelegate() {
 		return delegate;
 	}
-	
+
 	@Override
 	public void markDirty() {
 		super.markDirty();
@@ -261,7 +261,7 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 			sync();
 		}
 	}
-	
+
 	@Override
 	public void sync() {
 		BlockEntityClientSerializable.super.sync();
@@ -276,7 +276,7 @@ public class BlockEntityProjector extends BlockEntity implements ImplementedInve
 	public CompoundTag toClientTag(CompoundTag tag) {
 		return toTag(tag);
 	}
-	
+
 	@Override
 	public int[] getAvailableSlots(Direction side) {
 		if (side == Direction.UP) {

@@ -36,17 +36,17 @@ public class AoARenderers {
 		BlockRenderLayerMap.INSTANCE.putBlock(AoABlocks.TANK, RenderLayer.getCutout());
 
 		RendererFluid.setupFluidRendering(AoAFluids.ALKAHEST, AoAFluids.ALKAHEST_FLOWING,
-    			new Identifier("minecraft", "water"), 0xAA0077);
-    	RendererFluid.markTranslucent(AoAFluids.ALKAHEST, AoAFluids.ALKAHEST_FLOWING);
-    	
-    	RegistryEssentia.INSTANCE.forEach((Essentia essentia) -> {
-    		Fluid still = AoAFluids.ESSENTIA_FLUIDS.get(essentia);
-    		Fluid flowing = AoAFluids.ESSENTIA_FLUIDS_FLOWING.get(essentia);
-    		RendererFluid.setupFluidRendering(still, flowing, new Identifier("minecraft", "water"), essentia.getColor());
-    		RendererFluid.markTranslucent(still, flowing);
-    	});
-    	
-    	ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0xAA0077,
+				new Identifier("minecraft", "water"), 0xAA0077);
+		RendererFluid.markTranslucent(AoAFluids.ALKAHEST, AoAFluids.ALKAHEST_FLOWING);
+
+		RegistryEssentia.INSTANCE.forEach((Essentia essentia) -> {
+			Fluid still = AoAFluids.ESSENTIA_FLUIDS.get(essentia);
+			Fluid flowing = AoAFluids.ESSENTIA_FLUIDS_FLOWING.get(essentia);
+			RendererFluid.setupFluidRendering(still, flowing, new Identifier("minecraft", "water"), essentia.getColor());
+			RendererFluid.markTranslucent(still, flowing);
+		});
+
+		ColorProviderRegistry.BLOCK.register((state, view, pos, tintIndex) -> 0xAA0077,
 				AoABlocks.DISSOLVER, AoABlocks.DISSOLVER_PLUS);
 
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {

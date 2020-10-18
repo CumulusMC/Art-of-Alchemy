@@ -165,29 +165,29 @@ public class ModelPipe implements UnbakedModel, BakedModel, FabricBakedModel {
 
 		public void emitFront(final QuadEmitter emitter) {
 			emitPosSx(emitter, transformation, 0, left,  bottom, left);
-			emitPosSx(emitter, transformation, 1, left,  top,    left);
-			emitPosSx(emitter, transformation, 2, right, top,    left);
+			emitPosSx(emitter, transformation, 1, left,  top,	left);
+			emitPosSx(emitter, transformation, 2, right, top,	left);
 			emitPosSx(emitter, transformation, 3, right, bottom, left);
 		}
 
 		public void emitLeft(final QuadEmitter emitter) {
 			emitPosSx(emitter, transformation, 0, left, bottom, right);
-			emitPosSx(emitter, transformation, 1, left, top,    right);
-			emitPosSx(emitter, transformation, 2, left, top,     left);
+			emitPosSx(emitter, transformation, 1, left, top,	right);
+			emitPosSx(emitter, transformation, 2, left, top,	 left);
 			emitPosSx(emitter, transformation, 3, left, bottom,  left);
 		}
 
 		public void emitBack(final QuadEmitter emitter) {
 			emitPosSx(emitter, transformation, 0, right, bottom, right);
-			emitPosSx(emitter, transformation, 1, right, top,    right);
-			emitPosSx(emitter, transformation, 2, left,  top,    right);
+			emitPosSx(emitter, transformation, 1, right, top,	right);
+			emitPosSx(emitter, transformation, 2, left,  top,	right);
 			emitPosSx(emitter, transformation, 3, left,  bottom, right);
 		}
 
 		public void emitRight(final QuadEmitter emitter) {
 			emitPosSx(emitter, transformation, 0, right, bottom,  left);
-			emitPosSx(emitter, transformation, 1, right, top,     left);
-			emitPosSx(emitter, transformation, 2, right, top,    right);
+			emitPosSx(emitter, transformation, 1, right, top,	 left);
+			emitPosSx(emitter, transformation, 2, right, top,	right);
 			emitPosSx(emitter, transformation, 3, right, bottom, right);
 		}
 
@@ -324,8 +324,8 @@ public class ModelPipe implements UnbakedModel, BakedModel, FabricBakedModel {
 
 	@Override
 	public BakedModel bake(ModelLoader loader, Function<SpriteIdentifier, Sprite> textureGetter, ModelBakeSettings rotationContainer, Identifier modelId) {
-		final Sprite coreSprite    = textureGetter.apply(SPRITE_IDS[0]);
-		final Sprite tubeSprite    = textureGetter.apply(SPRITE_IDS[1]);
+		final Sprite coreSprite	= textureGetter.apply(SPRITE_IDS[0]);
+		final Sprite tubeSprite	= textureGetter.apply(SPRITE_IDS[1]);
 		final Sprite blockerSprite = textureGetter.apply(SPRITE_IDS[2]);
 		final Sprite sideCapSprite = textureGetter.apply(SPRITE_IDS[3]);
 		final Sprite endCapSprite  = textureGetter.apply(SPRITE_IDS[4]);
@@ -348,7 +348,7 @@ public class ModelPipe implements UnbakedModel, BakedModel, FabricBakedModel {
 		coreMesh = builder.build();
 
 		final Matrix4f[] cardTransforms = buildCardinalTransformations();
-		final TexCoordEmitter tubeTexEmitter      = new TexCoordEmitter(tubeSprite, 0, 0, 4, 5);
+		final TexCoordEmitter tubeTexEmitter	  = new TexCoordEmitter(tubeSprite, 0, 0, 4, 5);
 		final TexCoordEmitter shortTubeTexEmitter = new TexCoordEmitter(tubeSprite, 0, 0, 4, 1);
 
 		final TexCoordEmitter passivePortSideCapTexEmitter   = new TexCoordEmitter(sideCapSprite, 0,  0, 8,  4);

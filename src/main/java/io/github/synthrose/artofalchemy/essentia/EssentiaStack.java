@@ -11,11 +11,11 @@ import java.util.*;
 
 @SuppressWarnings("serial")
 public class EssentiaStack extends HashMap<Essentia, Integer> {
-	
+
 	public EssentiaStack() {
 		super();
 	}
-	
+
 	public EssentiaStack(JsonObject obj) {
 		obj.entrySet().forEach((entry) -> {
 			Essentia essentia = RegistryEssentia.INSTANCE.get(new Identifier(entry.getKey()));
@@ -26,7 +26,7 @@ public class EssentiaStack extends HashMap<Essentia, Integer> {
 			}
 		});
 	}
-	
+
 	public EssentiaStack(CompoundTag tag) {
 		if (tag != null) {
 			tag.getKeys().forEach((key) -> {
@@ -45,7 +45,7 @@ public class EssentiaStack extends HashMap<Essentia, Integer> {
 		}
 		return sum;
 	}
-	
+
 	public CompoundTag toTag() {
 		CompoundTag tag = new CompoundTag();
 		for (Essentia essentia : keySet()) {
@@ -53,7 +53,7 @@ public class EssentiaStack extends HashMap<Essentia, Integer> {
 		}
 		return tag;
 	}
-	
+
 	public List<Essentia> sortedList() {
 		List<Essentia> list = new ArrayList<>();
 		for (Essentia key : keySet()) {
@@ -64,7 +64,7 @@ public class EssentiaStack extends HashMap<Essentia, Integer> {
 		list.sort((item1, item2) -> get(item2) - get(item1));
 		return list;
 	}
-	
+
 	// Mutating scalar multiplication for a single essentia type. Can go negative - try not to break things.
 	public void multiply(Essentia essentia, int scalar) {
 		this.put(essentia, this.getOrDefault(essentia, 0) * scalar);
@@ -72,7 +72,7 @@ public class EssentiaStack extends HashMap<Essentia, Integer> {
 	public void multiply(Essentia essentia, double scalar) {
 		this.put(essentia, (int) (this.getOrDefault(essentia, 0) * scalar));
 	}
-	
+
 	// Mutating scalar multiplication. Can go negative - try not to break things.
 	public void multiply(int scalar) {
 		this.forEach((essentia, __) -> multiply(essentia, scalar));
@@ -80,7 +80,7 @@ public class EssentiaStack extends HashMap<Essentia, Integer> {
 	public void multiply(double scalar) {
 		this.forEach((essentia, __) -> multiply(essentia, scalar));
 	}
-	
+
 	// Non-mutating scalar multiplication. Can go negative - try not to break things.
 	public static EssentiaStack multiply(EssentiaStack inStack, int scalar) {
 		EssentiaStack outStack = new EssentiaStack();
@@ -101,17 +101,17 @@ public class EssentiaStack extends HashMap<Essentia, Integer> {
 		inStack.forEach((essentia, amount) -> outStack.put(essentia, (int) Math.ceil(amount * scalar)));
 		return outStack;
 	}
-	
+
 	// Mutating addition for a single essentia type.
 	public void add(Essentia essentia, int amount) {
 		this.put(essentia, this.getOrDefault(essentia, 0) + amount);
 	}
-	
+
 	// Mutating addition.
 	public void add(EssentiaStack other) {
 		other.forEach(this::add);
 	}
-	
+
 	// Non-mutating addition.
 	public static EssentiaStack add(EssentiaStack stack1, EssentiaStack stack2) {
 		EssentiaStack outStack = new EssentiaStack();
@@ -121,17 +121,17 @@ public class EssentiaStack extends HashMap<Essentia, Integer> {
 		union.forEach((essentia) -> outStack.put(essentia, stack1.getOrDefault(essentia, 0) + stack2.getOrDefault(essentia, 0)));
 		return outStack;
 	}
-	
+
 	// Mutating subtraction for a single essentia type.
 	public void subtract(Essentia essentia, int amount) {
 		this.put(essentia, Math.max(0, this.getOrDefault(essentia, 0) - amount));
 	}
-	
+
 	// Mutating subtraction.
 	public void subtract(EssentiaStack other) {
 		other.forEach(this::subtract);
 	}
-	
+
 	// Non-mutating subtraction.
 	public static EssentiaStack subtract(EssentiaStack stack1, EssentiaStack stack2) {
 		EssentiaStack outStack = new EssentiaStack();
@@ -143,7 +143,7 @@ public class EssentiaStack extends HashMap<Essentia, Integer> {
 		});
 		return outStack;
 	}
-	
+
 	// Returns true if this stack contains at least as much essentia of all types as the argument.
 	public boolean contains(EssentiaStack other) {
 		Set<Essentia> union = new HashSet<>();
@@ -167,5 +167,5 @@ public class EssentiaStack extends HashMap<Essentia, Integer> {
 		}
 		return AoAHelper.combineColor(colorSum);
 	}
-	
+
 }

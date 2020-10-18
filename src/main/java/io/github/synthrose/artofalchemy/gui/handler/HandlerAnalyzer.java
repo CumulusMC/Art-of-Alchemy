@@ -43,7 +43,7 @@ public class HandlerAnalyzer extends SyncedGuiDescription {
 		WGridPanel root = new WGridPanel(1);
 		setRootPanel(root);
 		root.setSize(160, 128 + 36);
-		
+
 		WSprite background = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/rune_bg.png"));
 		root.add(background, 0, 0, 9 * 18, 5 * 18);
 
@@ -55,7 +55,7 @@ public class HandlerAnalyzer extends SyncedGuiDescription {
 
 		WSprite inkIcon = new WSprite(new Identifier("minecraft", "textures/item/ink_sac.png"));
 		root.add(inkIcon, 4 * 18 + 1, 18 - 3, 16, 16);
-		
+
 		WItemSlot inkSlot = WItemSlot.of(inventory, 1);
 		root.add(inkSlot, 4 * 18, 18 - 4);
 
@@ -67,17 +67,17 @@ public class HandlerAnalyzer extends SyncedGuiDescription {
 
 		WItemSlot outSlot = WItemSlot.outputOf(inventory, 3);
 		root.add(outSlot, 6 * 18, 2 * 18);
-		
+
 		WSprite arrow = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/progress_off.png"));
 		root.add(arrow, 3 * 18, 2 * 18, 3 * 18, 18);
-		
+
 		WLabel title = new WLabel(new TranslatableText("block.artofalchemy.analysis_desk"),
 				WLabel.DEFAULT_TEXT_COLOR);
 		title.setHorizontalAlignment(HorizontalAlignment.CENTER);
 		root.add(title, 0, -1, 9 * 18, 18);
-		
+
 		root.add(this.createPlayerInventoryPanel(), 0, 5 * 18);
-		
+
 		root.validate(this);
 
 	}

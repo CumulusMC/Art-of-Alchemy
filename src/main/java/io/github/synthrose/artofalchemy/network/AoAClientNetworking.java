@@ -40,7 +40,7 @@ public class AoAClientNetworking {
 					}
 				});
 			});
-		
+
 		ClientSidePacketRegistry.INSTANCE.register(AoANetworking.ESSENTIA_PACKET_REQ,
 				(ctx, data) -> {
 					int essentiaId = data.readInt();

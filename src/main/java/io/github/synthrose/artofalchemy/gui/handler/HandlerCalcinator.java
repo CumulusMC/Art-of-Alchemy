@@ -14,23 +14,23 @@ public class HandlerCalcinator extends SyncedGuiDescription {
 
 	public HandlerCalcinator(int syncId, PlayerInventory playerInventory, ScreenHandlerContext ctx) {
 		super(AoAHandlers.CALCINATOR, syncId, playerInventory, getBlockInventory(ctx), getBlockPropertyDelegate(ctx));
-		
+
 		WGridPanel root = new WGridPanel(1);
 		setRootPanel(root);
 		root.setSize(160, 128 + 36);
-		
+
 		WSprite background = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/rune_bg.png"));
 		root.add(background, 0, 0, 9 * 18, 5 * 18);
-		
+
 		WItemSlot itemSlot = WItemSlot.of(blockInventory, 0);
 		root.add(itemSlot, 2 * 18, 18);
-		
+
 		WItemSlot fuelSlot = WItemSlot.of(blockInventory, 1);
 		root.add(fuelSlot, 2 * 18, 3 * 18);
-		
+
 		WItemSlot outSlot = WItemSlot.outputOf(blockInventory, 2);
 		root.add(outSlot, 6 * 18 + 4, 2 * 18);
-		
+
 		WBar fuelBar = new WBar(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/fire_off.png"),
 				new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/fire_on.png"),
 				0, 1, Direction.UP);
@@ -40,14 +40,14 @@ public class HandlerCalcinator extends SyncedGuiDescription {
 				new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/progress_yellow.png"),
 				2, 3, Direction.RIGHT);
 		root.add(progressBar, 3 * 18, 2 * 18 + 1, 3 * 18, 18);
-		
+
 		WLabel title = new WLabel(new TranslatableText("block.artofalchemy.calcination_furnace"),
 				WLabel.DEFAULT_TEXT_COLOR);
 		title.setHorizontalAlignment(HorizontalAlignment.CENTER);
 		root.add(title, 0, -1, 9 * 18, 18);
-		
+
 		root.add(this.createPlayerInventoryPanel(), 0, 5 * 18);
-		
+
 		root.validate(this);
 	}
 

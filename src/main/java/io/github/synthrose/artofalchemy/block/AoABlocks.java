@@ -33,7 +33,7 @@ public class AoABlocks {
 
 	public static final Block ALKAHEST = new BlockAlkahest();
 	public static final Map<Essentia, Block> ESSENTIA = new HashMap<>();
-	
+
 	public static void registerBlocks() {
 		register("analysis_desk", ANALYZER);
 		register("calcination_furnace", CALCINATOR);
@@ -47,7 +47,7 @@ public class AoABlocks {
 		register("elemental_centrifuge", ELEMENT_CENTRIFUGE);
 		register("essentia_tank", TANK);
 		register("essentia_pipe", PIPE);
-		
+
 		registerItemless("alkahest", ALKAHEST);
 
 		// Register materia dusts
@@ -57,7 +57,7 @@ public class AoABlocks {
 			MATERIA_BLOCKS.put(rank, registerItemless(name, block));
 			AoAItems.register(name, new BlockItemMateria(block, AoAItems.defaults()));
 		}
-		
+
 		// Register essentia fluid blocks; add-on essentia fluids will be registered to THEIR namespace
 		RegistryEssentia.INSTANCE.forEach((Essentia essentia, Identifier id) -> {
 			Identifier blockId = new Identifier(id.getNamespace(), "essentia_" + id.getPath());
@@ -65,18 +65,18 @@ public class AoABlocks {
 		});
 	}
 
-	
+
 	public static Block register(String name, Block block) {
 		AoAItems.register(name, new BlockItem(block, AoAItems.defaults()));
 		return registerItemless(name, block);
 	}
-	
+
 	public static Block registerItemless(String name, Block block) {
 		return registerItemless(ArtOfAlchemy.id(name), block);
 	}
-	
+
 	public static Block registerItemless(Identifier id, Block block) {
 		return Registry.register(Registry.BLOCK, id, block);
 	}
-	
+
 }
