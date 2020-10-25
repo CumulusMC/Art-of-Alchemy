@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.4-SNAPSHOT'
+	id 'fabric-loom' version '0.5-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -32,10 +32,19 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-	modImplementation "io.github.cottonmc:LibGui:${project.libgui_version}"
-	modImplementation "me.shedaniel.cloth:config-2:${project.clothconfig_version}"
-	modImplementation "me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}"
-	modImplementation "io.github.prospector:modmenu:${project.modmenu_version}"
+
+	modImplementation("io.github.cottonmc:LibGui:${project.libgui_version}") {
+		exclude group: "net.fabricmc.fabric-api"
+	}
+	modImplementation("me.shedaniel.cloth:config-2:${project.clothconfig_version}") {
+		exclude group: "net.fabricmc.fabric-api"
+	}
+	modImplementation("me.sargunvohra.mcmods:autoconfig1u:${project.autoconfig_version}") {
+		exclude group: "net.fabricmc.fabric-api"
+	}
+	modImplementation("io.github.prospector:modmenu:${project.modmenu_version}") {
+		exclude group: "net.fabricmc.fabric-api"
+	}
 
 	include "io.github.cottonmc:LibGui:${project.libgui_version}"
 	include "me.shedaniel.cloth:config-2:${project.clothconfig_version}"

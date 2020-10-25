@@ -13,7 +13,7 @@ import java.util.function.BiConsumer;
 public class RegistryEssentia extends SimpleRegistry<Essentia> {
 
 	public static final RegistryKey<Registry<Essentia>> KEY = RegistryKey.ofRegistry(ArtOfAlchemy.id("essentia"));
-	public static final RegistryEssentia INSTANCE = RegistryAccessor.create(KEY, new RegistryEssentia(), null);
+	public static final RegistryEssentia INSTANCE = RegistryAccessor.create(KEY, new RegistryEssentia(), null, Lifecycle.stable());
 
 	public RegistryEssentia() {
 		super(KEY, Lifecycle.stable());

@@ -43,11 +43,11 @@ public class ModelPipe implements UnbakedModel, BakedModel, FabricBakedModel {
 	private static final int DIRECTION_COUNT = Direction.values().length;
 
 	private static final SpriteIdentifier[] SPRITE_IDS = new SpriteIdentifier[] {
-		new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEX, new Identifier("artofalchemy:block/essentia_pipe_core")),
-		new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEX, new Identifier("artofalchemy:block/essentia_pipe_tube")),
-		new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEX, new Identifier("artofalchemy:block/essentia_pipe_blocker")),
-		new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEX, new Identifier("artofalchemy:block/essentia_pipe_sidecap")),
-		new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEX, new Identifier("artofalchemy:block/essentia_pipe_endcap")),
+		new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("artofalchemy:block/essentia_pipe_core")),
+		new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("artofalchemy:block/essentia_pipe_tube")),
+		new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("artofalchemy:block/essentia_pipe_blocker")),
+		new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("artofalchemy:block/essentia_pipe_sidecap")),
+		new SpriteIdentifier(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE, new Identifier("artofalchemy:block/essentia_pipe_endcap")),
 	};
 
 	private Sprite blockBreakSprite;

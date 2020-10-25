@@ -32,7 +32,7 @@ public class BlockDissolver extends BlockWithEntity {
 	public static final Settings SETTINGS = Settings
 		.of(Material.STONE)
 		.strength(5.0f, 6.0f)
-		.lightLevel((state) -> state.get(LIT) ? 15 : 0)
+		.luminance((state) -> state.get(LIT) ? 15 : 0)
 		.nonOpaque();
 
 	public static Identifier getId() {
