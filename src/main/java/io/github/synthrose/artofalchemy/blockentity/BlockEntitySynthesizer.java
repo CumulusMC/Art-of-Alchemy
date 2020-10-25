@@ -268,7 +268,7 @@ public class BlockEntitySynthesizer extends BlockEntity implements ImplementedIn
 	@Override
 	public boolean isValid(int slot, ItemStack stack) {
 		if (slot == 1) {
-			Tag<Item> tag = world.getTagManager().items().get(ArtOfAlchemy.id("containers"));
+			Tag<Item> tag = world.getTagManager().getItems().getTag(ArtOfAlchemy.id("containers"));
 			if (tag == null) {
 				return false;
 			} else {

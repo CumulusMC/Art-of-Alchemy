@@ -30,7 +30,7 @@ public class RendererFluid {
 		Identifier stillTexture = new Identifier(texture.getNamespace(), "block/" + texture.getPath() + "_still");
 		Identifier flowTexture = new Identifier(texture.getNamespace(), "block/" + texture.getPath() + "_flow");
 
-		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEX).register((atlas, registry) -> {
+		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlas, registry) -> {
 			registry.register(stillTexture);
 			registry.register(flowTexture);
 		});
@@ -45,7 +45,7 @@ public class RendererFluid {
 			@Override
 			public void apply(ResourceManager manager) {
 				Function<Identifier, Sprite> atlas = MinecraftClient.getInstance()
-						.getSpriteAtlas(SpriteAtlasTexture.BLOCK_ATLAS_TEX);
+						.getSpriteAtlas(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE);
 				sprites[0] = atlas.apply(stillTexture);
 				sprites[1] = atlas.apply(flowTexture);
 			}
