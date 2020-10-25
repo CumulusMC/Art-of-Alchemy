@@ -191,14 +191,20 @@ public class BlockPipe extends Block implements NetworkElement, BlockEntityProvi
 		}
 	}
 
-	@Override
-	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-		super.onPlaced(world, pos, state, placer, itemStack);
+	// Check surrounding blocks for open connections, and initialize this
+	// blocks face configuration accordingly
+	private void initConnectionFaces(World world, BlockPos pos) {
 		for (Direction dir : Direction.values()) {
 			if (faceOpen(world, pos.offset(dir), dir.getOpposite())) {
 				setFace(world, pos, dir, IOFace.CONNECT);
 			}
 		}
+	}
+
+	@Override
+	public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
+		super.onPlaced(world, pos, state, placer, itemStack);
+		initConnectionFaces(world, pos);
 		if (!world.isClient()) {
 			EssentiaNetworker.get((ServerWorld) world).add(pos);
 		}
@@ -216,6 +222,7 @@ public class BlockPipe extends Block implements NetworkElement, BlockEntityProvi
 	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		super.onBlockAdded(state, world, pos, oldState, notify);
+		initConnectionFaces(world, pos);
 		if (!world.isClient()) {
 			EssentiaNetworker.get((ServerWorld) world).add(pos);
 		}
