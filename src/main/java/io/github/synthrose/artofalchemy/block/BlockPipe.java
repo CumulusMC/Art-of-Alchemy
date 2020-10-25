@@ -210,12 +210,15 @@ public class BlockPipe extends Block implements NetworkElement, BlockEntityProvi
 		}
 	}
 
+	// Overriding afterBreak instead of onBroken means we still get access to the underlying block entity
 	@Override
-	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
-		super.onBroken(world, pos, state);
-		Map<Direction, IOFace> faces = getFaces(world.getWorld(), pos);
-		for (Direction dir : faces.keySet()) {
-			dropStack(world.getWorld(), pos, new ItemStack(ItemEssentiaPort.getItem(faces.get(dir))));
+	public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack) {
+		super.afterBreak(world, player, pos, state, blockEntity, stack);
+		Map<Direction, IOFace> faces = ((BlockEntityPipe)blockEntity).getFaces();
+		for (IOFace face : faces.values()) {
+			if (face.isNode()) {
+				dropStack(world.getWorld(), pos, new ItemStack(ItemEssentiaPort.getItem(face)));
+			}
 		}
 	}
 
