@@ -15,11 +15,12 @@ import java.util.List;
 
 public class WEssentiaSubPanel extends WPlainPanel {
 
+	private static final Identifier SYMBOLS_EMPTY = new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/symbols/empty.png");
 	private Essentia essentia = null;
 	private Integer amount = 0;
 	private Integer required = 0;
 	private final WSprite bg = new WSprite(ArtOfAlchemy.id("textures/gui/essentia_banner.png"));
-	private final WSprite sprite = new WSprite(null);
+	private final WSprite sprite = new WSprite(SYMBOLS_EMPTY);
 	private final WLabel amtLabel = new WLabel("0");
 	private final WLabel typeLabel = new WLabel("Empty");
 
@@ -50,7 +51,7 @@ public class WEssentiaSubPanel extends WPlainPanel {
 			typeLabel.setText(new TranslatableText("essentia." + id.getNamespace() + "." + id.getPath()));
 			typeLabel.setColor(0xFFFFFF, 0xFFFFFF);
 		} else {
-			sprite.setImage(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/symbols/empty.png"));
+			sprite.setImage(SYMBOLS_EMPTY);
 			typeLabel.setText(new TranslatableText("gui." + ArtOfAlchemy.MOD_ID + ".empty"));
 			amtLabel.setText(new LiteralText(""));
 		}

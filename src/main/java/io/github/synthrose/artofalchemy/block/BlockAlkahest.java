@@ -17,7 +17,7 @@ import java.util.Random;
 public class BlockAlkahest extends FluidBlock {
 
 	public static final Settings SETTINGS = Settings.copy(Blocks.WATER)
-		.lightLevel((state) -> 9);
+		.luminance((state) -> 9);
 
 	public BlockAlkahest() {
 		super(AoAFluids.ALKAHEST, SETTINGS);

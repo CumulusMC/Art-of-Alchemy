@@ -56,7 +56,7 @@ public class BlockPipe extends Block implements NetworkElement, BlockEntityProvi
 	}
 
 	@Override
-	public VoxelShape getRayTraceShape(BlockState state, BlockView world, BlockPos pos) {
+	public VoxelShape getRaycastShape(BlockState state, BlockView world, BlockPos pos) {
 		return boundingBox;
 	}
 
@@ -217,7 +217,7 @@ public class BlockPipe extends Block implements NetworkElement, BlockEntityProvi
 		Map<Direction, IOFace> faces = ((BlockEntityPipe)blockEntity).getFaces();
 		for (IOFace face : faces.values()) {
 			if (face.isNode()) {
-				dropStack(world.getWorld(), pos, new ItemStack(ItemEssentiaPort.getItem(face)));
+				dropStack(world, pos, new ItemStack(ItemEssentiaPort.getItem(face)));
 			}
 		}
 	}
