@@ -8,9 +8,9 @@
 
 	"item.artofalchemy.alchemical_journal": "炼金日志",
 	"item.artofalchemy.alchemical_journal.tooltip_entries": "%d条日志",
-	"item.artofalchemy.alchemy_formula": "嬗变方程式",
-	"item.artofalchemy.brewing_formula": "酿造方程式",
-	"item.artofalchemy.enchantment_formula": "附魔方程式",
+	"item.artofalchemy.alchemy_formula": "嬗变配方",
+	"item.artofalchemy.brewing_formula": "酿造配方",
+	"item.artofalchemy.enchantment_formula": "附魔配方",
 	
 	"block.artofalchemy.calcination_furnace": "煅烧炉",
 	"block.artofalchemy.dissolution_chamber": "溶解室",
@@ -122,7 +122,7 @@
 	"item.artofalchemy.essentia_vessel.tooltip_locked": "锁定",
 	"item.artofalchemy.essentia_vessel.tooltip_pulled": "已注入%d基质",
 	"item.artofalchemy.essentia_vessel.tooltip_pushed": "已输出%d基质",
-	"item.artofalchemy.essentia_vessel.tooltip_deprecated": "Deprecated！",
+	"item.artofalchemy.essentia_vessel.tooltip_deprecated": "已废弃！",
 	
 	"gui.artofalchemy.alkahest_tooltip": "万能溶剂 §7(%d/%d)",
 	"gui.artofalchemy.alkahest_warning": "需要万能溶剂！",
@@ -138,4 +138,33 @@
 	"gui.artofalchemy.formula_type.transmutation": "嬗变",
 		
 	"itemGroup.artofalchemy.alchemy": "炼金术"
+	
+	"text.autoconfig.artofalchemy.title": "炼金术",
+	"text.autoconfig.artofalchemy.option.networkProcessingLimit": "基质网络运行限制",
+	"text.autoconfig.artofalchemy.option.formulaLoot": "将贤者之石配方添加到战利品表内",
+	"text.autoconfig.artofalchemy.option.vesselCapacity": "基质容器容量",
+	"text.autoconfig.artofalchemy.option.tankCapacity": "基质储罐容量",
+	"text.autoconfig.artofalchemy.option.centrifugeCapacity": "离心机容量",
+	"text.autoconfig.artofalchemy.option.calcinatorSettings": "煅烧炉",
+	"text.autoconfig.artofalchemy.option.calcinatorSettings.yieldBasic": "产量 (基础版)",
+	"text.autoconfig.artofalchemy.option.calcinatorSettings.yieldPlus": "产量 (升级版)",
+	"text.autoconfig.artofalchemy.option.calcinatorSettings.opTimeBasic": "操作时间 (基础版)",
+	"text.autoconfig.artofalchemy.option.calcinatorSettings.opTimePlus": "操作时间 (升级版)",
+	"text.autoconfig.artofalchemy.option.dissolverSettings": "溶解室",
+	"text.autoconfig.artofalchemy.option.dissolverSettings.yieldBasic": "产量 (基础版)",
+	"text.autoconfig.artofalchemy.option.dissolverSettings.yieldPlus": "产量 (升级版)",
+	"text.autoconfig.artofalchemy.option.dissolverSettings.speedBasic": "速度系数 (基础版)",
+	"text.autoconfig.artofalchemy.option.dissolverSettings.speedPlus": "速度系数 (升级版)",
+	"text.autoconfig.artofalchemy.option.dissolverSettings.tankBasic": "储罐大小 (基础版)",
+	"text.autoconfig.artofalchemy.option.dissolverSettings.tankPlus": "储罐大小 (升级版)",
+	"text.autoconfig.artofalchemy.option.synthesizerSettings": "分析台",
+	"text.autoconfig.artofalchemy.option.synthesizerSettings.maxTierBasic": "最高品质 (基础版)",
+	"text.autoconfig.artofalchemy.option.synthesizerSettings.maxTierPlus": "最高品质 (升级版)",
+	"text.autoconfig.artofalchemy.option.synthesizerSettings.speedBasic": "速度系数 (基础版)",
+	"text.autoconfig.artofalchemy.option.synthesizerSettings.speedPlus": "速度系数 (升级版)",
+	"text.autoconfig.artofalchemy.option.synthesizerSettings.tankBasic": "储罐大小 (基础版)",
+	"text.autoconfig.artofalchemy.option.synthesizerSettings.tankPlus": "储罐大小 (升级版)",
+	"text.autoconfig.artofalchemy.option.projectorSettings": "投影祭坛",
+	"text.autoconfig.artofalchemy.option.projectorSettings.opTime": "操作时间",
+	"text.autoconfig.artofalchemy.option.projectorSettings.tankSize": "储罐大小"	
 }
