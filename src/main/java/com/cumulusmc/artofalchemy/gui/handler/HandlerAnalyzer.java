@@ -91,6 +91,7 @@ public class HandlerAnalyzer extends SyncedGuiDescription {
 
 	@Override
 	public void onSlotClick(int slotNumber, int button, SlotActionType action, PlayerEntity player) {
+		super.onSlotClick(slotNumber, button, action, player);
 		// If the output slot is the one that has been clicked
 		if (slotNumber == 3) {
 			// Take count of the number of items in the slot before updating
