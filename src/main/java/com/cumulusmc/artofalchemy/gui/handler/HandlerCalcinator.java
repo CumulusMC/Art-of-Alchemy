@@ -3,7 +3,6 @@ package com.cumulusmc.artofalchemy.gui.handler;
 import io.github.cottonmc.cotton.gui.SyncedGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.WBar.Direction;
-import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
 import com.cumulusmc.artofalchemy.ArtOfAlchemy;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandlerContext;
@@ -15,40 +14,42 @@ public class HandlerCalcinator extends SyncedGuiDescription {
 	public HandlerCalcinator(int syncId, PlayerInventory playerInventory, ScreenHandlerContext ctx) {
 		super(AoAHandlers.CALCINATOR, syncId, playerInventory, getBlockInventory(ctx), getBlockPropertyDelegate(ctx));
 
-		WGridPanel root = new WGridPanel(1);
-		setRootPanel(root);
-		root.setSize(160 + 16, 128 + 36 + 16);
+		WGridPanel panel = AoAHandlers.makePanel(this);
+		AoAHandlers.makeTitle(panel, new TranslatableText("block.artofalchemy.calcination_furnace"));
+		AoAHandlers.addInventory(panel, this);
+		AoAHandlers.addCentralProgressBar(panel, new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/progress_yellow.png"));
+		AoAHandlers.addBigOutput(panel, WItemSlot.outputOf(blockInventory, 2));
 
-		WSprite background = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/rune_bg.png"));
-		root.add(background, 4, 4, 9 * 18, 5 * 18);
+		// Input
+		panel.add(
+			WItemSlot.of(blockInventory, 0),
+			2 * AoAHandlers.BASIS + 4,
+			AoAHandlers.BASIS + 4
+		);
 
-		WItemSlot itemSlot = WItemSlot.of(blockInventory, 0);
-		root.add(itemSlot, 2 * 18, 18);
-
-		WItemSlot fuelSlot = WItemSlot.of(blockInventory, 1);
-		root.add(fuelSlot, 2 * 18, 3 * 18);
-
-		WItemSlot outSlot = WItemSlot.outputOf(blockInventory, 2);
-		root.add(outSlot, 6 * 18 + 4, 2 * 18);
-
-		WBar fuelBar = new WBar(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/fire_off.png"),
+		// Fuel
+		panel.add(
+			WItemSlot.of(blockInventory, 1),
+			2 * AoAHandlers.BASIS + 4,
+			3 * AoAHandlers.BASIS + 4
+		);
+		
+		// Fuel Bar
+		panel.add(
+			new WBar(
+				new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/fire_off.png"),
 				new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/fire_on.png"),
-				0, 1, Direction.UP);
-		root.add(fuelBar, 2 * 18 + 1, 2 * 18 + 1, 18, 18);
+				0,
+				1,
+				Direction.UP
+			),
+			2 * AoAHandlers.BASIS + 4 + 1 + 2,
+			2 * AoAHandlers.BASIS + 4 + 2,
+			AoAHandlers.BASIS - 4,
+			AoAHandlers.BASIS - 4
+		);
 
-		WBar progressBar = new WBar(ArtOfAlchemy.id("textures/gui/progress_off.png"),
-				ArtOfAlchemy.id("textures/gui/progress_yellow.png"),
-				2, 3, Direction.RIGHT);
-		root.add(progressBar, 3 * 18, 2 * 18 + 1, 3 * 18, 18);
-
-		WLabel title = new WLabel(new TranslatableText("block.artofalchemy.calcination_furnace"),
-				WLabel.DEFAULT_TEXT_COLOR);
-		title.setHorizontalAlignment(HorizontalAlignment.CENTER);
-		root.add(title, 0, 6, 9 * 18, 18);
-
-		root.add(this.createPlayerInventoryPanel(), 7, (5 * 18) - 7);
-
-		root.validate(this);
+		panel.validate(this);
 	}
 
 }

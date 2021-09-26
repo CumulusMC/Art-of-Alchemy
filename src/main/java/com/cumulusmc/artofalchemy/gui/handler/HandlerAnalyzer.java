@@ -40,46 +40,69 @@ public class HandlerAnalyzer extends SyncedGuiDescription {
 		super(AoAHandlers.ANALYZER, syncId, playerInventory);
 		blockInventory = inventory;
 
-		WGridPanel root = new WGridPanel(1);
-		setRootPanel(root);
-		root.setSize(160, 128 + 36);
+		WGridPanel panel = AoAHandlers.makePanel(this);
+		AoAHandlers.makeTitle(panel, new TranslatableText("block.artofalchemy.analysis_desk"));
+		AoAHandlers.addInventory(panel, this);
+		AoAHandlers.addBigOutput(panel, WItemSlot.outputOf(blockInventory, 3));
 
-		WSprite background = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/rune_bg.png"));
-		root.add(background, 0, 0, 9 * 18, 5 * 18);
+		// Paper Icon
+		panel.add(
+			new WSprite(new Identifier("minecraft", "textures/item/paper.png")),
+			2 * AoAHandlers.BASIS + 7 + 1,
+			2 * AoAHandlers.BASIS + 4 + 1,
+			16,
+			16
+		);
 
-		WSprite paperIcon = new WSprite(new Identifier("minecraft", "textures/item/paper.png"));
-		root.add(paperIcon, 2 * 18 + 5, 2 * 18 + 1, 16, 16);
+		// Paper Slot
+		panel.add(
+			WItemSlot.of(inventory, 0),
+			2 * AoAHandlers.BASIS + 7,
+			2 * AoAHandlers.BASIS + 4
+		);
 
-		WItemSlot paperSlot = WItemSlot.of(inventory, 0);
-		root.add(paperSlot, 2 * 18 + 4, 2 * 18);
+		// Ink Icon
+		panel.add(
+			new WSprite(new Identifier("minecraft", "textures/item/ink_sac.png")),
+			(4 * AoAHandlers.BASIS) + 7 + 1,
+			AoAHandlers.BASIS + 1,
+			16,
+			16
+		);
 
-		WSprite inkIcon = new WSprite(new Identifier("minecraft", "textures/item/ink_sac.png"));
-		root.add(inkIcon, 4 * 18 + 1, 18 - 3, 16, 16);
+		// Ink Slot
+		panel.add(
+			WItemSlot.of(inventory, 1),
+			(4 * AoAHandlers.BASIS) + 7,
+			AoAHandlers.BASIS
+		);
 
-		WItemSlot inkSlot = WItemSlot.of(inventory, 1);
-		root.add(inkSlot, 4 * 18, 18 - 4);
+		// Target Icon
+		panel.add(
+			new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/target.png")),
+			4 * AoAHandlers.BASIS + 7 + 1,
+			3 * AoAHandlers.BASIS + 8 + 1,
+			AoAHandlers.BASIS,
+			AoAHandlers.BASIS
+		);
 
-		WSprite targetIcon = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/target.png"));
-		root.add(targetIcon, 4 * 18 + 1, 3 * 18 + 5, 18, 18);
+		// Target Slot
+		panel.add(
+			WItemSlot.of(inventory, 2),
+			4 * AoAHandlers.BASIS + 7,
+			3 * AoAHandlers.BASIS + 8
+		);
 
-		WItemSlot targetSlot = WItemSlot.of(inventory, 2);
-		root.add(targetSlot, 4 * 18, 3 * 18 + 4);
+		// Progress Bar
+		panel.add(
+			new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/progress_off.png")),
+			3 * AoAHandlers.BASIS + 7,
+			2 * AoAHandlers.BASIS + 4,
+			3 * AoAHandlers.BASIS,
+			AoAHandlers.BASIS
+		);
 
-		WItemSlot outSlot = WItemSlot.outputOf(inventory, 3);
-		root.add(outSlot, 6 * 18, 2 * 18);
-
-		WSprite arrow = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/progress_off.png"));
-		root.add(arrow, 3 * 18, 2 * 18, 3 * 18, 18);
-
-		WLabel title = new WLabel(new TranslatableText("block.artofalchemy.analysis_desk"),
-				WLabel.DEFAULT_TEXT_COLOR);
-		title.setHorizontalAlignment(HorizontalAlignment.CENTER);
-		root.add(title, 0, -1, 9 * 18, 18);
-
-		root.add(this.createPlayerInventoryPanel(), 0, 5 * 18);
-
-		root.validate(this);
-
+		panel.validate(this);
 	}
 
 	@Override

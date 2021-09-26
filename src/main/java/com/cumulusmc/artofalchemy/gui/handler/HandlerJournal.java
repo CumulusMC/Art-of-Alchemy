@@ -9,8 +9,6 @@ import com.cumulusmc.artofalchemy.item.AbstractItemFormula;
 import com.cumulusmc.artofalchemy.item.ItemJournal;
 import com.cumulusmc.artofalchemy.network.AoAClientNetworking;
 import com.cumulusmc.artofalchemy.util.AoAHelper;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -48,15 +46,26 @@ public class HandlerJournal extends SyncedGuiDescription {
 		this.hand = hand;
 		this.journal = playerInventory.player.getStackInHand(hand);
 
-		WGridPanel root = new WGridPanel(1);
-		setRootPanel(root);
-		root.setSize(160, 128 + 18 * 5);
+		WGridPanel panel = new WGridPanel(1);
+		this.setRootPanel(panel);
+		panel.setSize(AoAHandlers.PANEL_WIDTH, AoAHandlers.PANEL_HEIGHT + 38);
+		AoAHandlers.makeTitle(panel, new WLabel(journal.getName()));
 
-		WSprite slotIcon = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/add_formula.png"));
-		root.add(slotIcon, 2, 17, 16, 16);
+		// Input Icon
+		panel.add(
+			new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/add_formula.png")),
+			4 + 1,
+			AoAHandlers.BASIS - 1,
+			AoAHandlers.BASIS - 2,
+			AoAHandlers.BASIS - 2
+		);
 
-		WItemSlot slot = WItemSlot.of(inventory, 0);
-		root.add(slot, 1, 16);
+		// Input Slot
+		panel.add(
+			WItemSlot.of(inventory, 0),
+			4,
+			AoAHandlers.BASIS - 2
+		);
 
 		searchBar = new WTextField() {
 			public void setSize(int x, int y) {
@@ -69,31 +78,55 @@ public class HandlerJournal extends SyncedGuiDescription {
 				formulaList.refresh(journal, this.getText());
 			}
 		};
-		root.add(searchBar, 22, 14, 6 * 18 + 6, 12);
+		panel.add(
+			searchBar,
+			AoAHandlers.BASIS + 8,
+			AoAHandlers.BASIS - 4,
+			(6 * AoAHandlers.BASIS) + 12,
+			AoAHandlers.BASIS - 6
+		);
 
-		WSprite background = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/rune_bg.png"));
-		root.add(background, 0, 2 * 18 + 10, 9 * 18, 5 * 18);
+		// Background
+		panel.add(
+			new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/rune_bg.png")),
+			4,
+			(2 * AoAHandlers.BASIS) + 10,
+			9 * AoAHandlers.BASIS,
+			5 * AoAHandlers.BASIS
+		);
 
 		formulaList = new WFormulaList(journal, hand);
 		formulaList.refresh();
-		root.add(formulaList, 0, 2 * 18, 9 * 18 - 2, 6 * 17 - 1);
-
-		WLabel title = new WLabel(journal.getName());
-		title.setHorizontalAlignment(HorizontalAlignment.CENTER);
-		root.add(title, 2 * 18, 0, 5 * 18, 18);
+		panel.add(
+			formulaList,
+			0,
+			2 * AoAHandlers.BASIS,
+			9 * AoAHandlers.BASIS + 8,
+			6 * AoAHandlers.BASIS - 2
+		);
 
 		clearButton = new WButton(new LiteralText("❌"));
 		clearButton.setAlignment(HorizontalAlignment.CENTER);
-		clearButton.setParent(root);
-		root.add(clearButton, 7 * 18 + 14, 14, 20, 20);
+		clearButton.setParent(panel);
+		panel.add(
+			clearButton,
+			(8 * AoAHandlers.BASIS) + 6,
+			AoAHandlers.BASIS - 4,
+			AoAHandlers.BASIS + 2,
+			AoAHandlers.BASIS + 2
+		);
 		clearButton.setOnClick(() -> {
 			AoAClientNetworking.sendJournalSelectPacket(Registry.ITEM.getId(Items.AIR), hand);
 		});
 		clearButton.setEnabled(ItemJournal.getFormula(this.journal) != Items.AIR);
+		
+		panel.add(
+			this.createPlayerInventoryPanel(),
+			AoAHandlers.OFFSET,
+			8 * AoAHandlers.BASIS
+		);
 
-		root.add(this.createPlayerInventoryPanel(), 0, 8 * 18);
-
-		root.validate(this);
+		panel.validate(this);
 	}
 
 	@Override

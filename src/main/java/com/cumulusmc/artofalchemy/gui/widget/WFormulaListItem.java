@@ -4,6 +4,8 @@ import io.github.cottonmc.cotton.gui.widget.WButton;
 import io.github.cottonmc.cotton.gui.widget.WLabel;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
+
+import com.cumulusmc.artofalchemy.gui.handler.AoAHandlers;
 import com.cumulusmc.artofalchemy.item.ItemJournal;
 import com.cumulusmc.artofalchemy.network.AoAClientNetworking;
 import net.fabricmc.api.EnvType;
@@ -39,24 +41,24 @@ public class WFormulaListItem extends WPlainPanel {
 		itemStackList.add(new ItemStack(formula));
 		itemDisplay = new WItemScalable(itemStackList);
 		itemDisplay.setParent(this);
-		add(itemDisplay, -2, 0, 16, 16);
+		add(itemDisplay, 0, 0, 16, 16);
 
 		formulaLabel = new WLabel(itemStackList.get(0).getName());
 		formulaLabel.setHorizontalAlignment(HorizontalAlignment.LEFT);
 		formulaLabel.setParent(this);
-//		add(formulaLabel, 16, -1);
 		add(formulaLabel, 16, 3);
-
-//		typeLabel = new WLabel(new TranslatableText("gui.artofalchemy.formula_type.transmutation").formatted(Formatting.DARK_PURPLE));
-//		typeLabel.setAlignment(Alignment.LEFT);
-//		typeLabel.setParent(this);
-//		add(typeLabel, 16, 8);
 
 		if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
 			setButton = new WButton(new LiteralText("✔"));
 			setButton.setAlignment(HorizontalAlignment.CENTER);
 			setButton.setParent(this);
-			add(setButton, 7 * 18 - 1, -3, 20, 20);
+			add(
+				setButton,
+				(8 * AoAHandlers.BASIS) - 8,
+				-4,
+				AoAHandlers.BASIS + 2,
+				AoAHandlers.BASIS + 2
+			);
 			setButton.setOnClick(() -> {
 				AoAClientNetworking.sendJournalSelectPacket(Registry.ITEM.getId(this.formula), hand);
 			});

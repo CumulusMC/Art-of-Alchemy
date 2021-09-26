@@ -27,29 +27,33 @@ public class HandlerDissolver extends SyncedGuiDescription {
 
 		pos = ctx.get((world, pos) -> pos, null);
 
-		WGridPanel root = new WGridPanel(1);
-		setRootPanel(root);
-		root.setSize(162, 128 + 36);
+		WGridPanel panel = AoAHandlers.makePanel(this);
+		AoAHandlers.makeTitle(panel, new TranslatableText("block.artofalchemy.dissolution_chamber"));
+		AoAHandlers.addInventory(panel, this);
+		AoAHandlers.addCentralProgressBar(panel, new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/progress_magenta.png"));
 
-		WSprite background = new WSprite(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/rune_bg.png"));
-		root.add(background, 0, 0, 9 * 18, 5 * 18);
+		// Item Input
+		panel.add(
+			WItemSlot.of(blockInventory, 0),
+			2 * AoAHandlers.BASIS + 7,
+			2 * AoAHandlers.BASIS + 4
+		);
 
-		WItemSlot inSlot = WItemSlot.of(blockInventory, 0);
-		root.add(inSlot, 2 * 18, 2 * 18);
-
-		WBar tankBar = new WBar(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/tank_empty.png"),
-				new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/tank_full.png"),
-				0, 1, Direction.UP);
+		WBar tankBar = new WBar(
+			new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/tank_empty.png"),
+			new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/tank_full.png"),
+			0,
+			1,
+			Direction.UP
+		);
 		tankBar.withTooltip("gui." + ArtOfAlchemy.MOD_ID + ".alkahest_tooltip");
-		root.add(tankBar, 0, 18, 2 * 18, 3 * 18);
-
-		WBar progressBar = new WBar(new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/progress_off.png"),
-				new Identifier(ArtOfAlchemy.MOD_ID, "textures/gui/progress_magenta.png"), 2, 3, Direction.RIGHT);
-		root.add(progressBar, 3 * 18, 2 * 18 + 1, 3 * 18, 18);
-
-		WLabel title = new WLabel(new TranslatableText("block.artofalchemy.dissolution_chamber"), WLabel.DEFAULT_TEXT_COLOR);
-		title.setHorizontalAlignment(HorizontalAlignment.CENTER);
-		root.add(title, 0, -1, 9 * 18, 18);
+		panel.add(
+			tankBar,
+			0,
+			AoAHandlers.BASIS,
+			2 * AoAHandlers.BASIS,
+			3 * AoAHandlers.BASIS + 6
+		);
 
 		WDynamicLabel alert = new WDynamicLabel(() -> {
 			switch (propertyDelegate.get(4)) {
@@ -62,16 +66,24 @@ public class HandlerDissolver extends SyncedGuiDescription {
 			}
 		}, 0xFF5555);
 		alert.setAlignment(HorizontalAlignment.CENTER);
-		root.add(alert, 0, -1 * 18, 9 * 18, 18);
+		panel.add(
+			alert,
+			0,
+			0 * AoAHandlers.BASIS,
+			9 * AoAHandlers.BASIS,
+			AoAHandlers.BASIS
+		);
 
-		EssentiaContainer essentia = getEssentia(ctx);
-		essentiaPanel = new WEssentiaPanel(essentia);
-		root.add(essentiaPanel, 6 * 18 - 1, 18 - 7, 3 * 18, 4 * 18);
+		this.essentiaPanel = new WEssentiaPanel(getEssentia(ctx));
+		panel.add(
+				this.essentiaPanel,
+			6 * AoAHandlers.BASIS - 1,
+			AoAHandlers.BASIS - AoAHandlers.OFFSET,
+			3 * AoAHandlers.BASIS,
+			4 * AoAHandlers.BASIS
+		);
 
-		root.add(this.createPlayerInventoryPanel(), 0, 5 * 18);
-
-		root.validate(this);
-
+		panel.validate(this);
 	}
 
 	public void updateEssentia(int essentiaId, EssentiaContainer essentia, BlockPos pos) {

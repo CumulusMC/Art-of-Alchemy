@@ -1,6 +1,8 @@
 package com.cumulusmc.artofalchemy.gui.widget;
 
 import io.github.cottonmc.cotton.gui.widget.WListPanel;
+
+import com.cumulusmc.artofalchemy.gui.handler.AoAHandlers;
 import com.cumulusmc.artofalchemy.item.ItemJournal;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
@@ -18,13 +20,13 @@ public class WFormulaList extends WListPanel<Item, WFormulaListItem> {
 
 	public WFormulaList(ItemStack journal, Hand hand) {
 		super(ItemJournal.getEntries(journal), () -> new WFormulaListItem(journal, hand), null);
+		this.hand = hand;
+		this.cellHeight = AoAHandlers.BASIS;
+		this.journal = journal;
 		this.configurator = (formula, listItem) -> {
 			listItem.refresh(this.journal, formula);
-			listItem.setSize(8 * 18, 16);
+			listItem.setSize(8 * AoAHandlers.BASIS, this.cellHeight);
 		};
-		this.hand = hand;
-		this.cellHeight = 16;
-		this.journal = journal;
 	}
 
 	@SuppressWarnings("MethodCallSideOnly")
