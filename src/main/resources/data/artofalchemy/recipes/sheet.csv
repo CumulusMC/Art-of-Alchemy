@@ -1,6 +1,9 @@
 Name,ID,Tag?,Restrict?,Rank,Amount,Mercury,Venus,Tellus,Mars,Jupiter,Saturn,Uranus,Neptune,Apollo,Diana,Ceres,Pluto,Void,M. Recov.,E. Recov.,Total E.,Expected E.
 Activator Rail,activator_rail,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Allium,allium,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Aluminum Ingot,c:aluminum_ingots,X,,C,4,80,,,,,,80,,,,,,,1.00,1.00,160,160
+Amethyst,c:amethysts,X,,B,4,,12,,,,,,,,12,,,,1.00,1.00,24,24
+Amethyst Block,amethyst_block,,,B,16,,48,,,,,,,,48,,,,1.00,1.00,96,96
 Ancient Debris,ancient_debris,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Andesite,andesite,,,F,1,2,,,,,,,,,,2,,,1.00,0.50,4,4
 Andesite Slab,andesite_slab,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -85,6 +88,7 @@ Coal,coal,,,D,2,,,,,16,,,,,,32,,,1.00,1.00,48,48
 Coal Block,coal_block,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Coal Ore,coal_ore,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Coarse Dirt,coarse_dirt,,,F,1,,,1,,,2,,,,,1,,,1.00,1.00,4,4
+Cobalt Ingot,c:cobalt_ingots,X,,B,4,120,,,60,,,,60,,,,,,1.00,1.00,240,240
 Cobblestone,cobblestone,,,F,1,2,,,,,2,,,,,,,,0.50,0.50,4,4
 Cobblestone Slab,cobblestone_slab,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 "Cobblestone Slab, Mossy",mossy_cobblestone_slab,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -104,6 +108,7 @@ Concrete,c:concrete,X,,F,1,,,,,,2,,,,1,1,,,1.00,1.00,4,4
 Concrete Powder,c:concrete_powders,X,,F,1,,,,,,2,,,,1,1,,,1.00,1.00,4,4
 Conduit,conduit,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Cookie,cookie,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Copper Ingot,c:copper_ingots,X,,C,4,80,80,,,,,,,,,,,,1.00,1.00,160,160
 Cornflower,cornflower,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Crafting Table,crafting_table,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Creeper Head,creeper_head,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -123,7 +128,7 @@ Dead Corals,c:dead_corals,X,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Detector Rail,detector_rail,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Diamond,diamond,,,A,4,,,,,,,,,,240,120,,,1.00,1.00,360,360
 Diamond Axe,diamond_axe,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
-Diamond Block,diamond_block,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Diamond Block,diamond_block,,,A,36,,,,,,,,,,2160,1080,,,1.00,1.00,3240,3240
 Diamond Boots,diamond_boots,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Diamond Chestplate,diamond_chestplate,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Diamond Helmet,diamond_helmet,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -143,6 +148,7 @@ Diorite Wall,diorite_wall,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Dirt,dirt,,,F,1,,,2,,,2,,,,,,,,1.00,1.00,4,4
 Dispenser,dispenser,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Dragon Egg,dragon_egg,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Dragon Egg,dragon_egg,,,S,64,,,,,,,,,,,,1000,4000,1.00,1.00,5000,5000
 Dragon Head,dragon_head,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Dragon's Breath,dragon_breath,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Dried Kelp,dried_kelp,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -151,11 +157,13 @@ Dropper,dropper,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Dyes,c:dyes,X,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Egg,egg,,,E,2,,12,,,,12,,,,,,,,1.00,1.00,24,24
 Elytra,elytra,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Elytra,elytra,,,S,24,,800,,,,,800,,,,,800,800,1.00,1.00,3200,3200
 Emerald,emerald,,,A,4,,,120,,,,,,,240,,,,1.00,1.00,360,360
 Emerald Block,emerald_block,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Emerald Ore,emerald_ore,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Enchanted Book,enchanted_book,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Enchanted Golden Apple,enchanted_golden_apple,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Enchanted Golden Apple,enchanted_golden_apple,,,S,32,1200,,1200,,,,,,1200,,,,,1.00,1.00,3600,3600
 Enchanting Table,enchanting_table,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 End Crystal,end_crystal,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 End Portal Frame,end_portal_frame,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -187,9 +195,12 @@ Glass,c:glass,X,,F,1,,,,,,2,,,,2,,,,1.00,1.00,4,4
 Glass Bottle,glass_bottle,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Glass Panes,c:glass_panes,X,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Glistering Melon Slice,glistering_melon_slice,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Glow Berries,glow_berries,,,D,2,,,8,,,,,,12,4,,,,1.00,1.00,24,24
+Glow Ink Sac,glow_ink_sac,,,D,2,,,,,,,,12,12,,,12,,1.00,1.00,36,36
+Glow Lichen,glow_lichen,,,E,2,,,6,,,,,,6,,,6,,1.00,1.00,18,18
 Glowstone,glowstone,,,C,8,,,,,80,,,,160,80,,,,1.00,1.00,320,320
 Glowstone Dust,glowstone_dust,,,C,2,,,,,20,,,,40,20,,,,1.00,1.00,80,80
-Gold Block,gold_block,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Gold Block,gold_block,,,B,36,1080,,,,,,,,1080,,,,,1.00,1.00,2160,2160
 Gold Ingot,gold_ingot,,,B,4,120,,,,,,,,120,,,,,1.00,1.00,240,240
 Gold Nugget,gold_nugget,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Gold Ore,gold_ore,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -229,9 +240,10 @@ Horn Coral Block,horn_coral_block,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Horn Corals,c:horn_corals,X,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Ice,ice,,,F,1,,,,,,,,2,,2,,,,1.00,1.00,4,4
 Ink Sac,ink_sac,,,E,2,,,,,,,,12,,,12,,,1.00,1.00,24,24
+Iridium Ingot,c:iridium_ingots,X,,A,4,180,,,,,,,,,90,,,90,1.00,1.00,360,360
 Iron Axe,iron_axe,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Iron Bars,iron_bars,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
-Iron Block,iron_block,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Iron Block,iron_block,,,C,36,720,,,720,,,,,,,,,,1.00,1.00,1440,1440
 Iron Boots,iron_boots,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Iron Chestplate,iron_chestplate,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Iron Door,iron_door,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -259,6 +271,7 @@ Lapis Lazuli Ore,lapis_ore,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Large Fern,large_fern,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Lava Bucket,lava_bucket,,,D,1,,,,,24,,,,,,,,,1.00,1.00,24,24
 Lead,lead,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Lead Ingot,c:lead_ingots,X,,C,4,80,,,,,80,,,,,,,,1.00,1.00,160,160
 Leather,leather,,,D,2,,,,24,,,,,,,24,,,1.00,1.00,48,48
 Leather Boots,leather_boots,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Leather Cap,leather_cap,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -286,6 +299,7 @@ Minecart with Chest,chest_minecart,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Minecart with Furnace,furnace_minecart,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Minecart with Hopper,hopper_minecart,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Minecart with TNT,tnt_minecart,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Moss,moss,,,F,1,,,2,,,,,,,,,,,1.00,1.00,2,2
 Mushroom Stem,mushroom_stem,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Music Discs,music_discs,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 "Mutton, Cooked",cooked_mutton,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -302,7 +316,7 @@ Nether Bricks,nether_bricks,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Nether Gold Ore,nether_gold_ore,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Nether Quartz Ore,nether_quartz_ore,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Nether Sprouts,nether_sprouts,,,D,2,,,12,,,,24,,,,,12,,1.00,1.00,48,48
-Nether Star,nether_star,,,S,32,,,,,,,,,1280,1280,,,1280,1.00,1.00,"3,840","3,840"
+Nether Star,nether_star,,,S,32,,,,,,,,,1280,1280,,,1280,1.00,1.00,3840,3840
 Nether Wart,nether_wart,,,D,2,,,12,24,,,,,,,,12,,1.00,1.00,48,48
 Nether Wart Block,nether_wart_block,,,E,4,,,12,24,,,,,,,,12,,1.00,1.00,48,48
 Netherite Axe,netherite_axe,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -311,27 +325,33 @@ Netherite Boots,netherite_boots,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Netherite Chestplate,netherite_chestplate,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Netherite Helmet,netherite_helmet,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Netherite Hoe,netherite_hoe,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
-Netherite Ingot,netherite_ingot,,,S,16,960,,,,,,,,480,,,480,480,1.00,0.80,"2,400","1,920"
+Netherite Ingot,netherite_ingot,,,S,16,960,,,,,,,,480,,,480,480,1.00,0.80,2400,1920
 Netherite Leggings,netherite_leggings,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Netherite Pickaxe,netherite_pickaxe,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Netherite Scrap,netherite_scrap,,,S,4,240,,,,,,,,,,,120,120,1.00,1.00,480,480
 Netherite Shovel,netherite_shovel,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Netherite Sword,netherite_sword,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Netherrack,netherrack,,,F,1,2,,,,2,,,,,,,2,,1.00,1.00,6,4
+Nickel Ingot,c:nickel_ingots,X,,B,4,120,,,60,,,60,,,,,,,1.00,1.00,240,240
 Note Block,note_block,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Observer,observer,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Obsidian,obsidian,,,D,4,,,,,32,,,32,,,32,,,1.00,1.00,96,96
 Orange Tulip,orange_tulip,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Osmium Ingot,c:osmium_ingots,X,,B,4,120,,,,,,,,,,60,,60,1.00,1.00,240,240
 Oxeye Daisy,oxeye_daisy,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Packed Ice,packed_ice,,,E,1,,,,,,,,6,,6,,,,1.00,1.00,12,12
 Painting,painting,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Palladium Ingot,c:palladium_ingots,X,,A,4,180,90,,,,,,,,,,,90,1.00,1.00,360,360
 Paper,paper,,,E,1,,,8,,,,,4,,,,,,1.00,0.67,12,12
 Peony,peony,,,E,1,6,,6,,,,,,,,,,,1.00,1.00,12,12
+Peridot,c:peridots,X,,B,4,,,,,,120,,,,120,,,,1.00,1.00,240,240
 Phantom Membrane,phantom_membrane,,,B,2,,,,,,,40,,40,40,,,,1.00,1.00,120,120
 Pink Tulip,pink_tulip,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Piston,piston,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 "Piston, Sticky",sticky_piston,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Planks,planks,X,,E,1,,,8,,,,,,,,4,,,1.00,1.00,12,12
+Platinum Ingot,c:platinum_ingots,X,,A,4,180,,,,,,,,,,,,180,1.00,1.00,360,360
+Plutonium Ingot,c:plutonium_ingots,X,,A,4,180,,,,,,,90,,,,90,,1.00,1.00,360,360
 Podzol,podzol,,,F,1,,,2,,,2,,,,,2,,,1.00,1.00,6,4
 Poisonous Potato,poisonous_potato,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Popped Chorus Fruit,popped_chorus_fruit,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -398,6 +418,7 @@ Redstone Torch,redstone_torch,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Respawn Anchor,respawn_anchor,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Rose Bush,rose_bush,,,E,1,,6,6,,,,,,,,,,,1.00,1.00,12,12
 Rotten Flesh,rotten_flesh,,,F,2,,,,4,,,,,,,,4,,1.00,1.00,8,8
+Ruby,c:rubies,X,,B,4,,,,120,,,,,,120,,,,1.00,1.00,240,240
 Saddle,saddle,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Salmon Bucket,salmon_bucket,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 "Salmon, Cooked",cooked_salmon,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -414,6 +435,7 @@ Sandstone Wall,sandstone_wall,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 "Sandstone, Cut",cut_sandstone,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 "Sandstone, Smooth",smooth_sandstone,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Saplings,saplings,X,,E,1,,,12,,,,,,,,,,,1.00,1.00,12,12
+Sapphire,c:sapphires,X,,B,4,,,,,,,,120,,120,,,,1.00,1.00,240,240
 Scaffolding,scaffolding,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Scute,scute,,,C,2,,,,,,20,,40,,,20,,,1.00,1.00,80,80
 Sea Lantern,sea_lantern,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -425,6 +447,7 @@ Shroomlight,shroomlight,,,D,2,12,,,,12,,,,12,,,,,1.00,1.00,36,48
 Shulker Box,shulker_box,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Shulker Shell,shulker_shell,,,B,2,40,,,,,40,40,,,,,,,1.00,1.00,120,120
 Signs,signs,X,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Silver Ingot,c:silver_ingots,X,,B,4,120,,,,,,,,,120,,,,1.00,1.00,240,240
 Skeleton Skull,skeleton_skull,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Slime Block,slime_block,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Slimeball,slime_ball,,,C,1,,,,,,20,,20,,,,,,1.00,1.00,40,40
@@ -472,8 +495,12 @@ Suspicious Stew,suspicious_stew,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Sweet Berries,sweet_berries,,,E,1,,,8,,,,,,,4,,,,1.00,1.00,12,12
 Target,target,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Terracotta,terracotta,,,F,1,,,,,,2,,1,,,1,,,1.00,1.00,4,4
+Thorium Ingot,c:thorium_ingots,X,,A,4,180,90,,,,,,,,,,90,,1.00,1.00,360,360
+Tin Ingot,c:tin_ingots,X,,C,4,80,,,,80,,,,,,,,,1.00,1.00,160,160
 Tipped Arrow,tipped_arrow,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Titanium Ingot,c:titanium_ingots,X,,B,4,120,,,,,60,,,,,60,,,1.00,1.00,240,240
 TNT,tnt,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Topaz,c:topazes,X,,B,4,,120,,,120,,,,,,,,,1.00,1.00,240,240
 Torch,torch,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Totem of Undying,totem_of_undying,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Trapped Chest,trapped_chest,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
@@ -483,9 +510,12 @@ Tropical Fish,tropical_fish,,,E,2,,,,12,,,,12,,,,,,1.00,1.00,24,24
 Tropical Fish Bucket,tropical_fish_bucket,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Tube Coral Block,tube_coral_block,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Tube Corals,c:tube_corals,X,,,,,,,,,,,,,,,,,1.00,1.00,0,0
+Tuff,tuff,,,E,2,12,,,,,,,,,,4,,,1.00,1.00,16,16
+Tungsten Ingot,c:tungsten_ingots,X,,B,4,120,,,,60,,,,,,60,,,1.00,1.00,240,240
 Turtle Egg,turtle_egg,,,D,2,,16,,,,16,,16,,,,,,1.00,1.00,48,48
 Turtle Shell,turtle_helmet,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Twisting Vines,twisting_vines,,,E,1,,,6,,,,6,,,,,,,1.00,1.00,12,12
+Uranium Ingot,c:uranium_ingots,X,,A,4,180,,,,,,90,,,,,90,,1.00,1.00,360,360
 Vines,vine,,,E,1,,,12,,,,,,,,,,,1.00,1.00,12,12
 Warped Fungus,warped_fungus,,,E,1,4,,,,,,4,,4,,,,,1.00,1.00,12,12
 Warped Nylium,warped_nylium,,,F,1,2,,,,2,,2,,,,,2,,1.00,1.00,8,4
@@ -511,26 +541,5 @@ Wooden Sword,wooden_sword,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Wooden Trapdoors,wooden_trapdoors,X,,,,,,,,,,,,,,,,,1.00,1.00,0,0
 Wool,wool,X,,E,4,24,,12,,,,12,,,,,,,1.00,1.00,48,48
 Written Book,written_book,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
-Zombie Head,zombie_head,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
-Aluminum Ingot,c:aluminum_ingots,X,,C,4,80,,,,,,80,,,,,,,1.00,1.00,160,160
-Amethyst,c:amethysts,X,,B,4,,120,,,,,,,,120,,,,1.00,1.00,240,240
-Cobalt Ingot,c:cobalt_ingots,X,,B,4,120,,,60,,,,60,,,,,,1.00,1.00,240,240
-Copper Ingot,c:copper_ingots,X,,C,4,80,80,,,,,,,,,,,,1.00,1.00,160,160
-Iridium Ingot,c:iridium_ingots,X,,A,4,180,,,,,,,,,90,,,90,1.00,1.00,360,360
-Lead Ingot,c:lead_ingots,X,,C,4,80,,,,,80,,,,,,,,1.00,1.00,160,160
-Osmium Ingot,c:osmium_ingots,X,,B,4,120,,,,,,,,,,60,,60,1.00,1.00,240,240
-Palladium Ingot,c:palladium_ingots,X,,A,4,180,90,,,,,,,,,,,90,1.00,1.00,360,360
-Peridot,c:peridots,X,,B,4,,,,,,120,,,,120,,,,1.00,1.00,240,240
-Platinum Ingot,c:platinum_ingots,X,,A,4,180,,,,,,,,,,,,180,1.00,1.00,360,360
-Plutonium Ingot,c:plutonium_ingots,X,,A,4,180,,,,,,,90,,,,90,,1.00,1.00,360,360
-Ruby,c:rubies,X,,B,4,,,,120,,,,,,120,,,,1.00,1.00,240,240
-Sapphire,c:sapphires,X,,B,4,,,,,,,,120,,120,,,,1.00,1.00,240,240
-Silver Ingot,c:silver_ingots,X,,B,4,120,,,,,,,,,120,,,,1.00,1.00,240,240
-Thorium Ingot,c:thorium_ingots,X,,A,4,180,90,,,,,,,,,,90,,1.00,1.00,360,360
-Tin Ingot,c:tin_ingots,X,,C,4,80,,,,80,,,,,,,,,1.00,1.00,160,160
-Titanium Ingot,c:titanium_ingots,X,,B,4,120,,,,,60,,,,,60,,,1.00,1.00,240,240
-Topaz,c:topazes,X,,B,4,,120,,,120,,,,,,,,,1.00,1.00,240,240
-Tungsten Ingot,c:tungsten_ingots,X,,B,4,120,,,,60,,,,,,60,,,1.00,1.00,240,240
-Uranium Ingot,c:uranium_ingots,X,,A,4,180,,,,,,90,,,,,90,,1.00,1.00,360,360
 Zinc Ingot,c:zinc_ingots,X,,C,4,80,,80,,,,,,,,,,,1.00,1.00,160,160
-Nickel Ingot,c:nickel_ingots,X,,B,4,120,,,60,,,60,,,,,,,1.00,1.00,240,240
+Zombie Head,zombie_head,,,,,,,,,,,,,,,,,,1.00,1.00,0,0
