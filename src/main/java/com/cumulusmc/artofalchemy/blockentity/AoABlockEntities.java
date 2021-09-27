@@ -13,6 +13,7 @@ public class AoABlockEntities {
 	public static final BlockEntityType<?> CALCINATOR_PLUS = FabricBlockEntityTypeBuilder.create(BlockEntityCalcinatorPlus::new, AoABlocks.CALCINATOR_PLUS).build(null);
 	public static final BlockEntityType<?> DISSOLVER = FabricBlockEntityTypeBuilder.create(BlockEntityDissolver::new, AoABlocks.DISSOLVER).build(null);
 	public static final BlockEntityType<?> DISSOLVER_PLUS = FabricBlockEntityTypeBuilder.create(BlockEntityDissolverPlus::new, AoABlocks.DISSOLVER_PLUS).build(null);
+	public static final BlockEntityType<?> DISTILLER = FabricBlockEntityTypeBuilder.create(BlockEntityDistiller::new, AoABlocks.DISTILLER).build(null);
 	public static final BlockEntityType<?> SYNTHESIZER = FabricBlockEntityTypeBuilder.create(BlockEntitySynthesizer::new, AoABlocks.SYNTHESIZER).build(null);
 	public static final BlockEntityType<?> SYNTHESIZER_PLUS = FabricBlockEntityTypeBuilder.create(BlockEntitySynthesizerPlus::new, AoABlocks.SYNTHESIZER_PLUS).build(null);
 	public static final BlockEntityType<?> PROJECTOR = FabricBlockEntityTypeBuilder.create(BlockEntityProjector::new, AoABlocks.PROJECTOR).build(null);
@@ -26,6 +27,7 @@ public class AoABlockEntities {
 		register("calcination_furnace_plus", CALCINATOR_PLUS);
 		register("dissolution_chamber", DISSOLVER);
 		register("dissolution_chamber_plus", DISSOLVER_PLUS);
+		register("distillation_aparatus", DISTILLER);
 		register("synthesis_table", SYNTHESIZER);
 		register("synthesis_table_plus", SYNTHESIZER_PLUS);
 		register("projector", PROJECTOR);

@@ -14,6 +14,7 @@
 	
 	"block.artofalchemy.calcination_furnace": "Calcination Furnace",
 	"block.artofalchemy.dissolution_chamber": "Dissolution Chamber",
+	"block.artofalchemy.distillation_aparatus": "Distillation Aparatus",
 	"block.artofalchemy.synthesis_table": "Synthesis Table",
 	"block.artofalchemy.analysis_desk": "Analysis Desk",
 	"block.artofalchemy.calcination_furnace_plus": "Calcination Furnace +",
@@ -125,6 +126,7 @@
 	"item.artofalchemy.essentia_vessel.tooltip_deprecated": "Deprecated!",
 	
 	"gui.artofalchemy.alkahest_tooltip": "Alkahest §7(%d/%d)",
+	"gui.artofalchemy.mixed_essentia_tooltip": "Mixed Essentia §7(%d/%d)",
 	"gui.artofalchemy.alkahest_warning": "Needs alkahest!",
 	"gui.artofalchemy.buffer_warning": "Buffer is full!",
 	"gui.artofalchemy.target_warning": "Unknown or missing target!",

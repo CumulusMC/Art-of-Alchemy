@@ -13,6 +13,8 @@ public class AoAScreens {
 				(desc, inventory, title) -> new ScreenCalcinator(desc, inventory.player));
 		ScreenRegistry.<HandlerDissolver, ScreenDissolver>register(AoAHandlers.DISSOLVER,
 				(desc, inventory, title) -> new ScreenDissolver(desc, inventory.player));
+		ScreenRegistry.<HandlerDistiller, ScreenDistiller>register(AoAHandlers.DISTILLER,
+				(desc, inventory, title) -> new ScreenDistiller(desc, inventory.player));
 		ScreenRegistry.<HandlerSynthesizer, ScreenSynthesizer>register(AoAHandlers.SYNTHESIZER,
 				(desc, inventory, title) -> new ScreenSynthesizer(desc, inventory.player));
 		ScreenRegistry.<HandlerAnalyzer, ScreenAnalyzer>register(AoAHandlers.ANALYZER,

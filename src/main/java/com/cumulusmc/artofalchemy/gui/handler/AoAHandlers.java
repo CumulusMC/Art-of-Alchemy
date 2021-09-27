@@ -15,6 +15,7 @@ public class AoAHandlers {
 
 	public static ScreenHandlerType<HandlerCalcinator>  CALCINATOR;
 	public static ScreenHandlerType<HandlerDissolver>   DISSOLVER;
+	public static ScreenHandlerType<HandlerDistiller>   DISTILLER;
 	public static ScreenHandlerType<HandlerSynthesizer> SYNTHESIZER;
 	public static ScreenHandlerType<HandlerAnalyzer>	ANALYZER;
 	public static ScreenHandlerType<HandlerProjector>   PROJECTOR;
@@ -23,6 +24,7 @@ public class AoAHandlers {
 	public static void registerHandlers() {
 		CALCINATOR = ScreenHandlerRegistry.registerExtended(BlockCalcinator.getId(), defaultFactory(HandlerCalcinator.class));
 		DISSOLVER = ScreenHandlerRegistry.registerExtended(BlockDissolver.getId(), defaultFactory(HandlerDissolver.class));
+		DISTILLER = ScreenHandlerRegistry.registerExtended(BlockDistiller.getId(), defaultFactory(HandlerDistiller.class));
 		SYNTHESIZER = ScreenHandlerRegistry.registerExtended(BlockSynthesizer.getId(), defaultFactory(HandlerSynthesizer.class));
 		PROJECTOR = ScreenHandlerRegistry.registerExtended(BlockProjector.getId(), defaultFactory(HandlerProjector.class));
 		ANALYZER = ScreenHandlerRegistry.registerExtended(BlockAnalyzer.getId(),

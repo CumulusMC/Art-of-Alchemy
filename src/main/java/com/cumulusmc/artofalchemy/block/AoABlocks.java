@@ -19,6 +19,7 @@ public class AoABlocks {
 	public static final Block ANALYZER = new BlockAnalyzer();
 	public static final Block CALCINATOR = new BlockCalcinator();
 	public static final Block DISSOLVER = new BlockDissolver();
+	public static final Block DISTILLER = new BlockDistiller();
 	public static final Block SYNTHESIZER = new BlockSynthesizer();
 	public static final Block PROJECTOR = new BlockProjector();
 	public static final Block CALCINATOR_PLUS = new BlockCalcinatorPlus();
@@ -38,6 +39,7 @@ public class AoABlocks {
 		register("analysis_desk", ANALYZER);
 		register("calcination_furnace", CALCINATOR);
 		register("dissolution_chamber", DISSOLVER);
+		register("distillation_aparatus", DISTILLER);
 		register("synthesis_table", SYNTHESIZER);
 		register("projection_altar", PROJECTOR);
 		register("calcination_furnace_plus", CALCINATOR_PLUS);
